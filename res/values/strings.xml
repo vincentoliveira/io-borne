@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">InnovOrder</string>
+    <string name="login_welcome">Veuillez entrer vos identifiants de connexion ci-dessous :</string>
+    <string name="login_hint_ident">Restaurant</string>
+    <string name="login_hint_password">Mot de passe</string>
+    <string name="login_hint_table_name">Numéro de la table (optionnel)</string>
+    <string name="login_button">Connexion</string>
+
+    <!-- Messages -->
+    <string name="no_network_connection_toast">La connexion a échoué.</string>
+    <string name="bad_user_toast">Le restaurant n\'existe pas.</string>
+
+    <!-- WEBSERVICES -->
+    <string name="ws_base">http://192.168.1.84</string>
+    <string name="ws_get_salt">/io/app_dev.php/api/salt?restaurant=%restaurant%</string>
+    <string name="ws_check_login">/io/app_dev.php/api/check_login</string>
+
+</resources>
