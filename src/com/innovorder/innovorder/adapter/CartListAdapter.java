@@ -5,8 +5,8 @@ import java.util.List;
 import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
+import com.innovorder.innovorder.utils.PriceFormatter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -69,7 +69,7 @@ public class CartListAdapter extends BaseAdapter {
 		} else if (position == getCount() - 1) { // total
 			nameTextView.setText("Total");
 			nameTextView.setTypeface(Typeface.DEFAULT_BOLD);
-			priceTextView.setText(formatPrice(cart.getTotal()));
+			priceTextView.setText(PriceFormatter.format(cart.getTotal()));
 			priceTextView.setTypeface(Typeface.DEFAULT_BOLD);
 			countTextView.setText("");
 			removeButton.setVisibility(View.INVISIBLE);
@@ -79,17 +79,12 @@ public class CartListAdapter extends BaseAdapter {
 
 			nameTextView.setTypeface(Typeface.DEFAULT);
 			nameTextView.setText(item.getName());
-			priceTextView.setText(formatPrice(item.getPrice()));
+			priceTextView.setText(PriceFormatter.format(item.getPrice()));
 			countTextView.setText("1");
 			removeButton.setVisibility(View.VISIBLE);
 			addButton.setVisibility(View.VISIBLE);
 		}
 		
 		return view;
-	}
-
-	@SuppressLint("DefaultLocale")
-	private String formatPrice(double price) {
-		return String.format("%.2f€", price);
 	}
 }

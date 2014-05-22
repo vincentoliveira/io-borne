@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.innovorder.innovorder.model.CarteItem;

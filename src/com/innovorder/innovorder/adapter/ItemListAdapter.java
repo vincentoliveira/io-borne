@@ -5,6 +5,7 @@ import java.util.List;
 import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.listener.AddItemToChartListener;
 import com.innovorder.innovorder.model.CarteItem;
+import com.innovorder.innovorder.utils.PriceFormatter;
 import com.innovorder.innovorder.webservice.DownloadImageTask;
 
 import android.content.Context;
@@ -12,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,7 +60,8 @@ public class ItemListAdapter extends BaseAdapter {
 		final CarteItem item = values.get(position);
 		
 		TextView nameTextView = (TextView) view.findViewById(R.id.nameTextView);
-		Button commanderButton = (Button) view.findViewById(R.id.button);
+		TextView priceTextView = (TextView) view.findViewById(R.id.priceTextView);
+		TextView addCartButton = (TextView) view.findViewById(R.id.addCartButton);
 		ImageView imageView = (ImageView) view.findViewById(R.id.dishImageView);
 		
 		if (item.getMediaUrl() != null) {
@@ -68,10 +69,10 @@ public class ItemListAdapter extends BaseAdapter {
 		}
 		
 		nameTextView.setText(item.getName());
-		commanderButton.setText("Ajouter (" + item.getPrice() + "Û)");
-		commanderButton.setTag(item.getId());
+		priceTextView.setText(PriceFormatter.format(item.getPrice()));
+		addCartButton.setTag(item.getId());
 		AddItemToChartListener listener = new AddItemToChartListener(context);
-		commanderButton.setOnClickListener(listener);
+		addCartButton.setOnClickListener(listener);
 		
 		return view;
 	}

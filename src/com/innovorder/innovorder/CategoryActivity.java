@@ -6,10 +6,11 @@ import com.innovorder.innovorder.adapter.ItemListAdapter;
 import com.innovorder.innovorder.listener.AddItemToChartListener;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.storage.CarteItemStorage;
+import com.innovorder.innovorder.utils.PriceFormatter;
 import com.innovorder.innovorder.webservice.DownloadImageTask;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -17,7 +18,6 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -26,7 +26,7 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 	private View detailsView;
 	private GridView gridView;
 	private ListAdapter gridViewAdapter;
-	private ImageView closeButton;
+	private Button closeButton;
 	private Button orderButton;
 	private List<CarteItem> children;
 	private CarteItem child;
@@ -62,6 +62,9 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 		children = itemStorage.getItemsByParentId(categoryId);
 		TextView titleTextView = (TextView) findViewById(R.id.categoryTextView);
 		titleTextView.setText(categoryName);
+		
+		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Aachen_bt.ttf");
+		titleTextView.setTypeface(custom_font);
 
 		detailsView = (View) findViewById(R.id.dish_container);
 		gridView = (GridView) findViewById(R.id.dishesGridView);
@@ -71,7 +74,7 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 		gridView.setAdapter(gridViewAdapter);
 		gridView.setOnItemClickListener(this);
 
-		closeButton = (ImageView) findViewById(R.id.closeButton);
+		closeButton = (Button) findViewById(R.id.closeButton);
 		closeButton.setOnClickListener(this);
 
 		orderButton = (Button) findViewById(R.id.commanderButton);
@@ -83,17 +86,18 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 			child = (CarteItem) gridViewAdapter.getItem(position);
 			TextView titleTextView = (TextView) detailsView.findViewById(R.id.dishTitleTextView);
 			TextView descTextView = (TextView) detailsView.findViewById(R.id.dishDescriptionTextView);
+			TextView dishPriceTextView = (TextView) detailsView.findViewById(R.id.dishPriceTextView);
 			ImageView imageView = (ImageView) detailsView.findViewById(R.id.dishImageView);
 
 			titleTextView.setText(child.getName());
 			descTextView.setText(child.getDescription());
+			dishPriceTextView.setText(PriceFormatter.format(child.getPrice()));
 
 			imageView.setImageResource(R.drawable.logo);
 			if (child.getMediaUrl() != null) {
 				String mediaBaseUrl = getString(R.string.ws_base) + getString(R.string.ws_media);
 				new DownloadImageTask(imageView).execute(mediaBaseUrl + child.getMediaUrl());
 			}
-			orderButton.setText("Ajouter (" + child.getPrice() + "Û)");
 			orderButton.setTag(child.getId());
 			AddItemToChartListener listener = new AddItemToChartListener(this);
 			orderButton.setOnClickListener(listener);

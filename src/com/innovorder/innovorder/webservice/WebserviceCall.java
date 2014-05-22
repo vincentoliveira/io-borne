@@ -38,7 +38,7 @@ public abstract class WebserviceCall extends AsyncTask<String, String, String> {
 			content = sb.toString();
 			Log.i("ws", content);
 		} catch (Exception ex) {
-			Log.e("WebserviceError", ex.getMessage());
+			//Log.e("WebserviceError", ex.getMessage());
 		} finally {
 			try {
 				if (reader != null) {

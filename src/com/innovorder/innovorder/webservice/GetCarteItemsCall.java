@@ -1,18 +1,11 @@
 package com.innovorder.innovorder.webservice;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import com.innovorder.innovorder.R;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
 
-public class GetCarteItemsCall extends AsyncTask<String, String, String> {
+public class GetCarteItemsCall extends WebserviceCall {
 	private ProgressDialog dialog;
 	private Context context;
 
@@ -56,46 +49,5 @@ public class GetCarteItemsCall extends AsyncTask<String, String, String> {
 		if (context instanceof WebserviceCallListener) {
 			((WebserviceCallListener) context).onWebserviceCallFinished(response, "getCarteItems");
 		}
-	}
-	
-	protected String getContent(String strurl, WsseToken wsseToken) 
-	{
-		BufferedReader reader = null;
-		String content = null;
-		try {
-			URL url = new URL(strurl);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Content-Type", "application/json");
-			conn.setConnectTimeout(5000);
-			conn.setReadTimeout(5000);
-			
-			if (wsseToken != null) {
-				conn.setRequestProperty(WsseToken.HEADER_WSSE, wsseToken.getWsseHeader());
-			}
-
-			reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			StringBuilder sb = new StringBuilder();
-			String line = "";
-
-			while ((line = reader.readLine()) != null) {
-				sb.append(line);
-			}
-
-			content = sb.toString();
-		} catch (Exception ex) {
-			Log.d("WebserviceError", ex.getMessage());
-		} finally {
-			try {
-				if (reader != null) {
-					reader.close();
-				}
-			} catch (Exception ex) {
-				Log.d("WebserviceError", ex.getMessage());
-			}
-		}
-
-		Log.i("ws", content != null ? content : "null");
-		return content;
 	}
 }

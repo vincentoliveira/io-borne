@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.innovorder.innovorder.adapter.NavDrawerListAdapter;
 import com.innovorder.innovorder.model.CarteItem;
@@ -83,6 +82,7 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 				invalidateOptionsMenu();
 			}
 		};
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
 	}
 
 	@Override

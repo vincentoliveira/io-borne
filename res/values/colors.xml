@@ -8,8 +8,8 @@
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
     
-    <color name="black">#000</color>
-    <color name="white">#fff</color>
+    <color name="numa_pink">#e31b7c</color>
+    <color name="numa_yellow">#ffec00</color>
     
     <color name="gridview_overlay">#80000000</color>
 </resources>

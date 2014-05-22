@@ -12,20 +12,24 @@
 
         <TextView
             android:id="@+id/categoryTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:padding="5dp"
-            android:textSize="28sp" />
+            android:textSize="28sp" 
+            android:gravity="center" 
+            android:background="@color/numa_pink"
+            android:textColor="@android:color/black" />
 
         <RelativeLayout
             android:id="@+id/dish_container"
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:layout_below="@+id/categoryTextView"
-            android:padding="5dp" >
+            android:padding="5dp"
+            android:background="@android:color/black" >
 
             <ImageView
                 android:id="@+id/dishImageView"
@@ -36,7 +40,8 @@
                 android:layout_marginRight="20dp"
                 android:contentDescription="@string/empty_string"
                 android:scaleType="centerInside"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo"
+            	android:background="@android:color/white" />
 
             <TextView
                 android:id="@+id/dishTitleTextView"
@@ -45,15 +50,25 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/dishImageView"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+        		android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/dishPriceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/dishTitleTextView"
+                android:layout_below="@+id/dishTitleTextView"
+        		android:textColor="@android:color/white" />
 
             <TextView
                 android:id="@+id/dishDescriptionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/dishTitleTextView"
-                android:layout_below="@+id/dishTitleTextView"
-                android:textStyle="italic" />
+                android:layout_below="@+id/dishPriceTextView"
+                android:textStyle="italic"
+        		android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/commanderButton"
@@ -62,16 +77,18 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toRightOf="@+id/dishImageView"
                 android:text="@string/btn_commander"
+        		android:textColor="@color/numa_yellow"
         		android:background="@drawable/customborder" />
 
-            <ImageView
+            <Button
                 android:id="@+id/closeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:contentDescription="@string/close_btn"
-                android:src="@android:drawable/btn_dialog"
+                android:contentDescription="@string/btn_close"
+                android:text="@string/btn_close"
+        		android:textColor="@color/numa_yellow"
         		android:background="@drawable/customborder" />
         </RelativeLayout>
 
@@ -81,10 +98,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dish_container"
             android:layout_centerHorizontal="true"
-            android:horizontalSpacing="1dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:padding="10dp" 
             android:numColumns="3"
-            android:rowHeight="300dp"
-            android:verticalSpacing="1dp" >
+            android:rowHeight="300dp">
         </GridView>
     </RelativeLayout>
 
