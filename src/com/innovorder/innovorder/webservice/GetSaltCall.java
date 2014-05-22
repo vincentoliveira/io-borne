@@ -33,9 +33,9 @@ public class GetSaltCall extends WebserviceCall {
 			return null;
 		}
 
-		String restaurant = params[0];
+		String username = params[0];
 		
-		wsSaltUrl = wsSaltUrl.replace("%restaurant%", restaurant);
+		wsSaltUrl = wsSaltUrl.replace("%username%", username);
 		return getContent(wsSaltUrl, null);
 	}
 

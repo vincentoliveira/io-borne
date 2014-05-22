@@ -1,0 +1,43 @@
+package com.innovorder.innovorder;
+
+import com.innovorder.innovorder.adapter.CartListAdapter;
+import com.innovorder.innovorder.model.Cart;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.widget.ListAdapter;
+
+public class ChartDialogFragment extends DialogFragment {
+	@Override
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		// Use the Builder class for convenient dialog construction
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		
+		Cart cart = Cart.getInstance();
+		ListAdapter adapter = new CartListAdapter(getActivity(), cart);
+		
+		builder.setTitle(R.string.mon_panier)
+		.setPositiveButton(R.string.btn_valider_commande, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// FIRE ZE MISSILES!
+			}
+		})
+		.setCancelable(true)
+		.setNegativeButton(R.string.btn_annuler, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				// User cancelled the dialog
+			}
+		})
+		.setAdapter(adapter, new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int item) {
+
+		    }
+		});
+		
+		// Create the AlertDialog object and return it
+		return builder.create();
+	}
+}

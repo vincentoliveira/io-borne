@@ -71,4 +71,8 @@ public class LoginManager {
 		
 		return hash;
 	}
+
+	public void clear() {
+		setPassword(null);
+	}
 }

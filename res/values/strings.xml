@@ -7,14 +7,32 @@
     <string name="login_hint_password">Mot de passe</string>
     <string name="login_hint_table_name">Numéro de la table (optionnel)</string>
     <string name="login_button">Connexion</string>
+    <string name="close_btn">Fermer</string>
+    <string name="btn_commander">Ajouter</string>
+    <string name="btn_envoyer_cuisine">Valider ma commande</string>
 
+    <!-- Menu -->
+    <string name="menu_carte"></string>
+    <string name="menu_retour_accueil">Accueil</string>
+    <string name="menu_commande">MA COMMANDE</string>
+    
+    <string name="mon_panier">Mon panier</string>
+    <string name="btn_annuler">Annuler</string>
+    <string name="btn_valider_commande">Valider ma commande</string>
+    
     <!-- Messages -->
     <string name="no_network_connection_toast">La connexion a échoué.</string>
-    <string name="bad_user_toast">Le restaurant n\'existe pas.</string>
+    <string name="bad_user_toast">La combinaison Restaurant/Mot de passe est incorrecte.</string>
+    <string name="msg_get_menu">Récupération de la carte &#8230;</string>
+    
+    <!-- Content Description -->
+    <string name="empty_string"></string>
 
     <!-- WEBSERVICES -->
-    <string name="ws_base">http://192.168.1.84</string>
-    <string name="ws_get_salt">/io/app_dev.php/api/salt?restaurant=%restaurant%</string>
-    <string name="ws_check_login">/io/app_dev.php/api/check_login</string>
+    <string name="ws_base">http://recette.innovorder.fr</string>
+    <string name="ws_media">/media/</string>
+    <string name="ws_get_salt">/api/salt.json?username=%username%</string>
+    <string name="ws_check_login">/api/check_login.json</string>
+    <string name="ws_get_carte_items">/api/carte.json</string>
 
 </resources>
