@@ -26,7 +26,6 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 	private View detailsView;
 	private GridView gridView;
 	private ListAdapter gridViewAdapter;
-	private Button closeButton;
 	private Button orderButton;
 	private List<CarteItem> children;
 	private CarteItem child;
@@ -62,7 +61,7 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 		children = itemStorage.getItemsByParentId(categoryId);
 		TextView titleTextView = (TextView) findViewById(R.id.categoryTextView);
 		titleTextView.setText(categoryName);
-		
+
 		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Aachen_bt.ttf");
 		titleTextView.setTypeface(custom_font);
 
@@ -74,11 +73,15 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 		gridView.setAdapter(gridViewAdapter);
 		gridView.setOnItemClickListener(this);
 
-		closeButton = (Button) findViewById(R.id.closeButton);
-		closeButton.setOnClickListener(this);
-
 		orderButton = (Button) findViewById(R.id.commanderButton);
-		orderButton.setOnClickListener(this);
+		
+		TextView title2TextView = (TextView) detailsView.findViewById(R.id.dishTitleTextView);
+		TextView backTextView = (TextView) detailsView.findViewById(R.id.backTextView);
+		title2TextView.setTypeface(custom_font);
+		title2TextView.setOnClickListener(this);
+		backTextView.setOnClickListener(this);
+		AddItemToChartListener listener = new AddItemToChartListener(this);
+		orderButton.setOnClickListener(listener);
 	}
 
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,8 +102,6 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 				new DownloadImageTask(imageView).execute(mediaBaseUrl + child.getMediaUrl());
 			}
 			orderButton.setTag(child.getId());
-			AddItemToChartListener listener = new AddItemToChartListener(this);
-			orderButton.setOnClickListener(listener);
 
 			detailsView.setVisibility(View.VISIBLE);
 		} else {
@@ -110,11 +111,7 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 
 	@Override
 	public void onClick(View view) {
-		if (view.getId() == closeButton.getId()) {
-			detailsView.setVisibility(View.GONE);
-			child = null;
-		} else if (view.getId() == orderButton.getId()) {
-			detailsView.setVisibility(View.GONE);
-		}
+		detailsView.setVisibility(View.GONE);
+		child = null;
 	}
 }
