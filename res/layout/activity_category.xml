@@ -37,7 +37,8 @@
                 android:layout_height="320dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="20dp"
                 android:contentDescription="@string/empty_string"
                 android:scaleType="centerInside"
                 android:src="@drawable/logo"
@@ -52,32 +53,34 @@
                 android:textSize="40sp"
                 android:textStyle="bold"
         		android:textColor="@color/numa_pink"
-        		android:text="@string/btn_close" />
+        		android:text="@string/btn_close"
+                android:layout_marginRight="10dp" />
             
             <TextView
                 android:id="@+id/dishTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:layout_alignBaseline="@+id/backTextView"
+                android:layout_toLeftOf="@+id/dishImageView"
                 android:layout_toRightOf="@+id/backTextView"
+                android:textColor="@android:color/black"
                 android:textSize="30sp"
                 android:textStyle="bold"
-        		android:textColor="@android:color/black" />
+                android:layout_marginBottom="5dp" />
 
             <TextView
                 android:id="@+id/dishPriceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/backTextView"
+                android:layout_toRightOf="@+id/backTextView"
+                android:layout_below="@+id/dishTitleTextView"
         		android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/dishDescriptionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_toRightOf="@+id/backTextView"
                 android:layout_below="@+id/dishPriceTextView"
                 android:textStyle="italic"
         		android:textColor="@android:color/black" />
@@ -86,11 +89,13 @@
                 android:id="@+id/commanderButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
-                android:text="@string/btn_commander"
-        		android:textColor="@android:color/white"
-        		android:background="@color/numa_pink" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/dishTitleTextView"
+                android:background="@color/numa_pink"
+                android:text="@string/btn_ajouter_panier"
+                android:textColor="@android:color/white" />
+
         </RelativeLayout>
 
         <GridView

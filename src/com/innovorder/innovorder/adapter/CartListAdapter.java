@@ -1,14 +1,19 @@
 package com.innovorder.innovorder.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.innovorder.innovorder.R;
+import com.innovorder.innovorder.listener.AddItemToChartListener;
+import com.innovorder.innovorder.listener.RemoveItemFromChartListener;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.utils.PriceFormatter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +23,54 @@ import android.widget.TextView;
 
 public class CartListAdapter extends BaseAdapter {
 	private Context context;
-	private final List<CarteItem> values;
 	private Cart cart;
+	private AddItemToChartListener addListener;
+	private RemoveItemFromChartListener removeListener;
+	private List<Pair<CarteItem, Integer>> values;
 
 	public CartListAdapter(Context context, Cart cart) {
 		this.context = context;
 		this.cart = cart;
-		this.values = cart.getItems();
+		
+		addListener = new AddItemToChartListener(context);
+		addListener.setAdapter(this);
+		removeListener = new RemoveItemFromChartListener(context);
+		removeListener.setAdapter(this);
+		
+		parseItems();
+	}
+	
+	@SuppressLint("UseValueOf")
+	@SuppressWarnings("unchecked")
+	public void parseItems()
+	{
+		if (values != null) {
+			values.clear();
+		}
+		
+		values = new ArrayList<Pair<CarteItem,Integer>>();
+		ArrayList<CarteItem> ids = new ArrayList<CarteItem>();
+		ArrayList<CarteItem> copyitems = (ArrayList<CarteItem>) cart.getItems().clone();
+		for (CarteItem item : copyitems) {
+			if (ids.contains(item)) {
+				continue;
+			}
+			
+			int value = 0;
+			for (CarteItem i : cart.getItems()) {
+				if (i.getId() == item.getId()) {
+					value = value + 1;
+				}
+			}
+			values.add(Pair.create(item, new Integer(value)));
+			ids.add(item);
+		}
+	}
+	
+	@Override
+	public void notifyDataSetChanged() {
+		parseItems();
+		super.notifyDataSetChanged();
 	}
 
 	@Override
@@ -75,13 +121,21 @@ public class CartListAdapter extends BaseAdapter {
 			removeButton.setVisibility(View.INVISIBLE);
 			addButton.setVisibility(View.INVISIBLE);
 		} else {
-			final CarteItem item = values.get(position);
+			Pair<CarteItem, Integer> pair = values.get(position);
+			final CarteItem item = pair.first;
+			final Integer count = pair.second;
 
 			nameTextView.setTypeface(Typeface.DEFAULT);
 			nameTextView.setText(item.getName());
 			priceTextView.setText(PriceFormatter.format(item.getPrice()));
-			countTextView.setText("1");
+			countTextView.setText(count.toString());
+
+			removeButton.setTag(item.getId());
+			removeButton.setOnClickListener(removeListener);
 			removeButton.setVisibility(View.VISIBLE);
+			
+			addButton.setTag(item.getId());
+			addButton.setOnClickListener(addListener);
 			addButton.setVisibility(View.VISIBLE);
 		}
 		

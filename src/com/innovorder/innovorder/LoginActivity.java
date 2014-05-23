@@ -91,7 +91,7 @@ public class LoginActivity extends Activity implements OnClickListener, Webservi
 				return;
 			}
 
-			Intent intent = new Intent(this, CarteActivity.class);
+			Intent intent = new Intent(this, WelcomeActivity.class);
 			startActivity(intent);
 			finish();
 		}

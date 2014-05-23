@@ -3,8 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    tools:context=".CarteActivity" 
-    android:padding="2dp">
+    android:padding="5dp"
+    tools:context=".CarteActivity" >
 
     <Button
         android:id="@+id/removeButton"
@@ -12,15 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="-" />
+        android:background="@color/numa_pink"
+        android:text="-"
+        android:gravity="center"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/countTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/removeButton"
         android:layout_alignBaseline="@+id/removeButton"
-        android:text="2" />
+        android:layout_toRightOf="@id/removeButton" />
 
     <Button
         android:id="@+id/addButton"
@@ -28,7 +30,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/countTextView"
-        android:text="+" />
+        android:background="@color/numa_pink"
+        android:text="+"
+        android:gravity="center"
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/nameTextView"
@@ -36,13 +41,13 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/removeButton"
         android:layout_toRightOf="@id/addButton"
-        android:text="TextView" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/priceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/removeButton"
-        android:layout_alignParentRight="true"
-        android:text="12€" />
+        android:layout_alignParentRight="true" />
+
 </RelativeLayout>

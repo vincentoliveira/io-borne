@@ -40,13 +40,15 @@
         android:id="@+id/addCartButton"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:minWidth="40dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_below="@+id/nameTextView"
         android:layout_alignParentRight="true"
         android:text="@string/btn_ajouter_panier"
-        android:textColor="@color/numa_pink"
+        android:textColor="@android:color/white"
+        android:background="@color/numa_pink"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="20sp"
    	 	android:gravity="center" />
 
 </RelativeLayout>

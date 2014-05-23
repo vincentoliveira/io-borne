@@ -68,5 +68,9 @@ public class CarteItem {
 		this.mediaUrl = mediaUrl;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof CarteItem && (((CarteItem) o).getId()) == this.getId();
+	}
 }
 

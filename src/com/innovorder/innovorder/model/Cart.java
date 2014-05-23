@@ -61,6 +61,15 @@ public class Cart {
 		return items;
 	}
 
+	public void removeItem(CarteItem toRemoveItem) {
+		for (CarteItem item : items) {
+			if (item.getId() == toRemoveItem.getId()) {
+				items.remove(item);
+				break;
+			}
+		}
+	}
+
 	public void addItem(CarteItem item) {
 		this.items.add(item);
 	}
@@ -75,6 +84,13 @@ public class Cart {
 			total += item.getPrice();
 		}
 		return total;
+	}
+
+	public void empty() {
+		items.clear();
+		orderName = "";
+		startOrderDate = null;
+		endOrderDate = null;
 	}
 
 }

@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="18" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -25,15 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.innovorder.innovorder.CarteActivity"
             android:label="@string/menu_carte" >
         </activity>
-        
         <activity
             android:name="com.innovorder.innovorder.CategoryActivity"
             android:label="@string/menu_carte" >
+        </activity>
+        <activity
+            android:name="com.innovorder.innovorder.WelcomeActivity"
+            android:label="@string/title_activity_main" >
         </activity>
     </application>
 

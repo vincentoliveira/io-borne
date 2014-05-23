@@ -29,14 +29,16 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 		
 		carteItemStorage = new CarteItemStorage(this);
 		
-		List<CarteItem> categories = carteItemStorage.getMainCategories();
-		//getCategories();
-		if (categories == null || categories.isEmpty()) {
-			getCarteItems();
-		} else {
-			setLeftMenu(categories);
+
+		if (savedInstanceState == null) {
+			Bundle extras = getIntent().getExtras();
+			if (extras != null && extras.getBoolean("refresh")) {
+				getCarteItems();
+			}
 		}
-		getCarteItems();
+		
+		List<CarteItem> categories = carteItemStorage.getMainCategories();
+		setLeftMenu(categories);
 	}
 
 	private void getCarteItems() {

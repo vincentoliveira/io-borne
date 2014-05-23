@@ -1,6 +1,7 @@
 package com.innovorder.innovorder;
 
 import com.innovorder.innovorder.adapter.CartListAdapter;
+import com.innovorder.innovorder.listener.OrderListener;
 import com.innovorder.innovorder.model.Cart;
 
 import android.app.AlertDialog;
@@ -20,11 +21,7 @@ public class ChartDialogFragment extends DialogFragment {
 		ListAdapter adapter = new CartListAdapter(getActivity(), cart);
 		
 		builder.setTitle(R.string.mon_panier)
-		.setPositiveButton(R.string.btn_valider_commande, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				// FIRE ZE MISSILES!
-			}
-		})
+		.setPositiveButton(R.string.btn_valider_commande, new OrderListener(this.getActivity()))
 		.setCancelable(true)
 		.setNegativeButton(R.string.btn_annuler, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
