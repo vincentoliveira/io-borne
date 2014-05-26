@@ -75,7 +75,6 @@ public class CarteItemParser {
 			if (jsonItem.has(TAG_MEDIA)) {
 				JSONObject jsonMedia = jsonItem.getJSONObject(TAG_MEDIA);
 				item.setMediaUrl(jsonMedia.getString(TAG_MEDIA_URL));
-				Log.i("media", jsonMedia.getString(TAG_MEDIA_URL));
 			}
 			
 			if (jsonItem.has(TAG_CHILDREN)) {

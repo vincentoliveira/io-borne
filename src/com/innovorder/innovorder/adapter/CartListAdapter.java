@@ -31,31 +31,30 @@ public class CartListAdapter extends BaseAdapter {
 	public CartListAdapter(Context context, Cart cart) {
 		this.context = context;
 		this.cart = cart;
-		
+
 		addListener = new AddItemToChartListener(context);
 		addListener.setAdapter(this);
 		removeListener = new RemoveItemFromChartListener(context);
 		removeListener.setAdapter(this);
-		
+
 		parseItems();
 	}
-	
+
 	@SuppressLint("UseValueOf")
 	@SuppressWarnings("unchecked")
-	public void parseItems()
-	{
+	public void parseItems() {
 		if (values != null) {
 			values.clear();
 		}
-		
-		values = new ArrayList<Pair<CarteItem,Integer>>();
+
+		values = new ArrayList<Pair<CarteItem, Integer>>();
 		ArrayList<CarteItem> ids = new ArrayList<CarteItem>();
 		ArrayList<CarteItem> copyitems = (ArrayList<CarteItem>) cart.getItems().clone();
 		for (CarteItem item : copyitems) {
 			if (ids.contains(item)) {
 				continue;
 			}
-			
+
 			int value = 0;
 			for (CarteItem i : cart.getItems()) {
 				if (i.getId() == item.getId()) {
@@ -66,7 +65,7 @@ public class CartListAdapter extends BaseAdapter {
 			ids.add(item);
 		}
 	}
-	
+
 	@Override
 	public void notifyDataSetChanged() {
 		parseItems();
@@ -92,20 +91,15 @@ public class CartListAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View view;
-		if (convertView == null) {
-			view = new View(context);
-			view = inflater.inflate(R.layout.cart_item, null);
-		} else {
-			view = (View) convertView;
-		}
+		View view = new View(context);
+		view = inflater.inflate(R.layout.cart_item, null);
 
 		TextView nameTextView = (TextView) view.findViewById(R.id.nameTextView);
 		TextView priceTextView = (TextView) view.findViewById(R.id.priceTextView);
 		TextView countTextView = (TextView) view.findViewById(R.id.countTextView);
 		Button removeButton = (Button) view.findViewById(R.id.removeButton);
 		Button addButton = (Button) view.findViewById(R.id.addButton);
-		
+
 		if (position == getCount() - 2) { // empty line
 			nameTextView.setText("");
 			countTextView.setText("");
@@ -133,12 +127,12 @@ public class CartListAdapter extends BaseAdapter {
 			removeButton.setTag(item.getId());
 			removeButton.setOnClickListener(removeListener);
 			removeButton.setVisibility(View.VISIBLE);
-			
+
 			addButton.setTag(item.getId());
 			addButton.setOnClickListener(addListener);
 			addButton.setVisibility(View.VISIBLE);
 		}
-		
+
 		return view;
 	}
 }

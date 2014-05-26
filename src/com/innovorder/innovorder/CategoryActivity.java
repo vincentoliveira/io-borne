@@ -5,9 +5,9 @@ import java.util.List;
 import com.innovorder.innovorder.adapter.ItemListAdapter;
 import com.innovorder.innovorder.listener.AddItemToChartListener;
 import com.innovorder.innovorder.model.CarteItem;
+import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.storage.CarteItemStorage;
 import com.innovorder.innovorder.utils.PriceFormatter;
-import com.innovorder.innovorder.webservice.DownloadImageTask;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -96,10 +96,11 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 			descTextView.setText(child.getDescription());
 			dishPriceTextView.setText(PriceFormatter.format(child.getPrice()));
 
-			imageView.setImageResource(R.drawable.logo);
+			imageView.setImageResource(R.drawable.ic_launcher);
 			if (child.getMediaUrl() != null) {
-				String mediaBaseUrl = getString(R.string.ws_base) + getString(R.string.ws_media);
-				new DownloadImageTask(imageView).execute(mediaBaseUrl + child.getMediaUrl());
+				String mediaUrl = getString(R.string.ws_base) + getString(R.string.ws_media) + child.getMediaUrl();
+				BitmapStorage bitmapStorage = BitmapStorage.getInstance();
+				bitmapStorage.loadBitmap(mediaUrl, imageView);
 			}
 			orderButton.setTag(child.getId());
 

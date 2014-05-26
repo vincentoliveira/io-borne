@@ -22,8 +22,8 @@
     <string name="welcome_title">GAGNER DU TEMPS</string>
     <string name="welcome_description">Commander sur la tablette grâce à notre menu interactif, votre plat sera prêt au bar dans 5 minutes.</string>
     <string name="welcome_button">Commander</string>
-    <string name="welcome_enter_your_name">Veuillez renseigner un nom pour la commande</string>
-    <string name="welcome_hint">Entrez votre nom</string>
+    <string name="welcome_enter_your_name">Veuillez renseigner un prénom pour la commande</string>
+    <string name="welcome_hint">Entrez votre prénom</string>
     
     <!-- Messages -->
     <string name="no_network_connection_toast">La connexion a échoué.</string>

@@ -5,8 +5,8 @@ import java.util.List;
 import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.listener.AddItemToChartListener;
 import com.innovorder.innovorder.model.CarteItem;
+import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.utils.PriceFormatter;
-import com.innovorder.innovorder.webservice.DownloadImageTask;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -69,7 +69,9 @@ public class ItemListAdapter extends BaseAdapter {
 		ImageView imageView = (ImageView) view.findViewById(R.id.dishImageView);
 		
 		if (item.getMediaUrl() != null) {
-			new DownloadImageTask(imageView).execute(mediaBaseUrl + item.getMediaUrl());
+			String url = mediaBaseUrl + item.getMediaUrl();
+			BitmapStorage bitmapStorage = BitmapStorage.getInstance();
+			bitmapStorage.loadBitmap(url, imageView);
 		}
 		
 		nameTextView.setText(item.getName());

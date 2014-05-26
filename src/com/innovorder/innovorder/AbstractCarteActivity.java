@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.innovorder.innovorder.adapter.NavDrawerListAdapter;
 import com.innovorder.innovorder.model.CarteItem;
+import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.webservice.WebserviceCallListener;
 
 public abstract class AbstractCarteActivity extends FragmentActivity implements WebserviceCallListener, OnItemClickListener {
@@ -28,12 +29,27 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu, menu);
-		
-		Drawable d = getResources().getDrawable(R.drawable.header_logo);  
+
+		Drawable d = getResources().getDrawable(R.drawable.header_logo);
 		getActionBar().setBackgroundDrawable(d);
-		
+
+		BitmapStorage bitmapStorage = BitmapStorage.getInstance();
+		if (!bitmapStorage.isInit()) {
+			int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+			int cacheSize = maxMemory / 4;
+			bitmapStorage.init(cacheSize);
+		}
+
 		return true;
 	}
+	
+	
+	@Override
+	public void onBackPressed() {
+	    //moveTaskToBack(true);
+		//Toast.makeText(this, "T'en vas pas. Si tu l'aimes, t'en vas pas. Si tu l'aimes dis lui. Qu'elle est l'app de ta vie vie vie.", Toast.LENGTH_LONG).show();
+	}
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -67,7 +83,7 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 		// Set menu
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-		
+
 		// setting the nav drawer list adapter
 		adapter = new NavDrawerListAdapter(getApplicationContext(), items);
 		mDrawerList.setAdapter(adapter);
@@ -98,21 +114,21 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 
 			return;
 		}
-		
-		 Intent intent = new Intent(this, CategoryActivity.class);
-		
-		 intent.putExtra("category_name", category.getName());
-		 intent.putExtra("category_id", category.getId());
-		 startActivity(intent);
-		
-		 finish();
+
+		Intent intent = new Intent(this, CategoryActivity.class);
+
+		intent.putExtra("category_name", category.getName());
+		intent.putExtra("category_id", category.getId());
+		startActivity(intent);
+
+		finish();
 	}
 
 	@Override
 	public void onWebserviceCallFinished(String response, String tag) {
 		if (tag.equals("order")) {
 			Toast.makeText(this, R.string.msg_order_success, Toast.LENGTH_SHORT).show();
-			
+
 			Intent intent = new Intent(this, WelcomeActivity.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			startActivity(intent);

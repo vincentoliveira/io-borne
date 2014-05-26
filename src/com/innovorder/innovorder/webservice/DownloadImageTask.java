@@ -2,6 +2,8 @@ package com.innovorder.innovorder.webservice;
 
 import java.io.InputStream;
 
+import com.innovorder.innovorder.storage.BitmapStorage;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -37,7 +39,8 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 	protected void onPostExecute(Bitmap result) {
 		if (result == null)
 			return;
-
+		
+		BitmapStorage.getInstance().addBitmapToMemoryCache(url, result);
 		bmImage.setImageBitmap(result);
 	}
 }

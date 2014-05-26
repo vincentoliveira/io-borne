@@ -13,7 +13,7 @@
         android:layout_marginRight="12dp"
         android:contentDescription="@string/empty_string"
         android:layout_centerVertical="true"
-        android:src="@drawable/icon_boisson" />
+        android:src="@drawable/icon_home" />
 
     <TextView
         android:id="@+id/title"

@@ -19,7 +19,7 @@ public abstract class WebserviceCall extends AsyncTask<String, String, String> {
 		BufferedReader reader = null;
 		String content = null;
 		try {
-			Log.i("ws", strurl);
+			Log.i("ws", this.method + ": " + strurl);
 			URL url = new URL(strurl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod(method);

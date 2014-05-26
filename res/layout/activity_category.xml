@@ -41,7 +41,7 @@
                 android:layout_marginLeft="20dp"
                 android:contentDescription="@string/empty_string"
                 android:scaleType="centerInside"
-                android:src="@drawable/logo"
+                android:src="@drawable/ic_launcher"
             	android:background="@android:color/white" />
 
             <TextView

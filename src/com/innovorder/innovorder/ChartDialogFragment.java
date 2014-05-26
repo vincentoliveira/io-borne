@@ -20,9 +20,15 @@ public class ChartDialogFragment extends DialogFragment {
 		Cart cart = Cart.getInstance();
 		ListAdapter adapter = new CartListAdapter(getActivity(), cart);
 		
-		builder.setTitle(R.string.mon_panier)
+		StringBuilder title = new StringBuilder();
+		title.append(getString(R.string.mon_panier))
+		.append(" (")
+		.append(cart.getOrderName())
+		.append(")");
+		
+		builder.setTitle(title.toString())
 		.setPositiveButton(R.string.btn_valider_commande, new OrderListener(this.getActivity()))
-		.setCancelable(true)
+		.setCancelable(false)
 		.setNegativeButton(R.string.btn_annuler, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 				// User cancelled the dialog

@@ -1,9 +1,12 @@
 package com.innovorder.innovorder.webservice;
 
+import java.text.SimpleDateFormat;
+
 import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 
@@ -31,6 +34,7 @@ public class OrderCall extends WebserviceCall {
 	/**
 	 * @return String encoded password
 	 */
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected String doInBackground(String... params) {
 		if (wsUrl == null ||  params.length < 2) {
@@ -54,17 +58,19 @@ public class OrderCall extends WebserviceCall {
 			.append("}");
 		}
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
 		StringBuilder dataBuilder = new StringBuilder();
-		dataBuilder.append("{\"commande_name\":\"")
+		dataBuilder.append("{\"name\":\"")
 		.append(cart.getOrderName())
-		.append("\",\"startOrderDate\":\"")
+		.append("\",\"start_date\":\"")
+		.append(formatter.format(cart.getStartOrderDate()))
 		.append("\",\"items\":[")
 		.append(itemsBuilder).
 		append("]}");
 		
 		this.method = "POST";
 		this.postData = dataBuilder.toString();
-		
 		
 		return getContent(wsUrl, wsseToken);
 	}
