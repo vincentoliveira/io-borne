@@ -6,23 +6,12 @@
     tools:context=".CarteActivity" 
     android:padding="2dp" >
 
-    <ImageView
-        android:id="@+id/dishImageView"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/empty_string"
-        android:scaleType="centerInside"
-        android:background="@android:color/white"
-        android:src="@drawable/ic_launcher" />
-
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/dishImageView"
+        android:layout_alignParentTop="true"
         android:textSize="18sp" 
         android:textColor="@android:color/black"
         android:layout_marginLeft="10dp"
@@ -36,19 +25,50 @@
         android:layout_alignLeft="@+id/nameTextView"
         android:textColor="@android:color/black" />
 
-    <TextView
+    <ImageView
+        android:id="@+id/dishImageView"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_below="@+id/priceTextView"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/empty_string"
+        android:scaleType="centerInside"
+        android:background="@android:color/white"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
         android:id="@+id/addCartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_below="@+id/nameTextView"
-        android:layout_alignParentRight="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dishImageView"
+        android:layout_alignParentBottom="true"
         android:text="@string/btn_ajouter_panier"
         android:textColor="@android:color/white"
         android:background="@color/numa_pink"
         android:textStyle="bold"
         android:textSize="20sp"
    	 	android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/cancelButton"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/dishImageView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        android:background="@color/numa_yellow"
+        android:src="@drawable/icon_cancel" />
+
+    <ImageView
+        android:id="@+id/validateButton"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/dishImageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp"
+        android:background="@color/numa_pink"
+        android:src="@drawable/icon_check" />
 
 </RelativeLayout>

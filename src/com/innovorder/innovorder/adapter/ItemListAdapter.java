@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -65,8 +66,10 @@ public class ItemListAdapter extends BaseAdapter {
 		
 		TextView nameTextView = (TextView) view.findViewById(R.id.nameTextView);
 		TextView priceTextView = (TextView) view.findViewById(R.id.priceTextView);
-		TextView addCartButton = (TextView) view.findViewById(R.id.addCartButton);
+		final TextView addCartButton = (TextView) view.findViewById(R.id.addCartButton);
 		ImageView imageView = (ImageView) view.findViewById(R.id.dishImageView);
+		final ImageView cancelButton = (ImageView) view.findViewById(R.id.cancelButton);
+		final ImageView validateButton = (ImageView) view.findViewById(R.id.validateButton);
 		
 		if (item.getMediaUrl() != null) {
 			String url = mediaBaseUrl + item.getMediaUrl();
@@ -76,8 +79,30 @@ public class ItemListAdapter extends BaseAdapter {
 		
 		nameTextView.setText(item.getName());
 		priceTextView.setText(PriceFormatter.format(item.getPrice()));
-		addCartButton.setTag(item.getId());
-		addCartButton.setOnClickListener(listener);
+		
+		validateButton.setTag(item.getId());
+		validateButton.setOnClickListener(listener);
+		
+		cancelButton.setVisibility(View.GONE);
+		validateButton.setVisibility(View.GONE);
+		
+		addCartButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addCartButton.setVisibility(View.GONE);
+				cancelButton.setVisibility(View.VISIBLE);
+				validateButton.setVisibility(View.VISIBLE);
+			}
+		});
+		
+		cancelButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				addCartButton.setVisibility(View.VISIBLE);
+				cancelButton.setVisibility(View.GONE);
+				validateButton.setVisibility(View.GONE);
+			}
+		});
 
 		Typeface custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Aachen_bt.ttf");
 		nameTextView.setTypeface(custom_font);
