@@ -36,10 +36,10 @@
         android:background="@android:color/white"
         android:src="@drawable/ic_launcher" />
 
-    <Button
+    <TextView
         android:id="@+id/addCartButton"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@+id/dishImageView"
         android:layout_alignParentBottom="true"
         android:text="@string/btn_ajouter_panier"
@@ -57,6 +57,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:padding="5dp"
+        android:contentDescription="@string/empty_string"
         android:background="@color/numa_yellow"
         android:src="@drawable/icon_cancel" />
 
@@ -68,6 +69,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:padding="5dp"
+        android:contentDescription="@string/empty_string"
         android:background="@color/numa_pink"
         android:src="@drawable/icon_check" />
 

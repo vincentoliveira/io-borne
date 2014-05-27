@@ -94,6 +94,8 @@
                 android:layout_alignRight="@+id/dishTitleTextView"
                 android:background="@color/numa_pink"
                 android:text="@string/btn_ajouter_panier"
+        		android:textStyle="bold"
+        		android:textSize="20sp"
                 android:textColor="@android:color/white" />
 
         </RelativeLayout>

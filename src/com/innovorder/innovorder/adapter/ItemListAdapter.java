@@ -31,6 +31,7 @@ public class ItemListAdapter extends BaseAdapter {
 		this.layout = layout;
 		
 		listener = new AddItemToChartListener(context);
+		listener.setAdapter(this);
 		this.mediaBaseUrl = context.getString(R.string.ws_base) + context.getString(R.string.ws_media);
 	}
 
@@ -82,7 +83,8 @@ public class ItemListAdapter extends BaseAdapter {
 		
 		validateButton.setTag(item.getId());
 		validateButton.setOnClickListener(listener);
-		
+
+		addCartButton.setVisibility(View.VISIBLE);
 		cancelButton.setVisibility(View.GONE);
 		validateButton.setVisibility(View.GONE);
 		
