@@ -2,6 +2,8 @@ package com.innovorder.innovorder;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -17,6 +19,7 @@ import android.widget.ListView;
 
 import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.adapter.NavDrawerListAdapter;
+import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.webservice.WebserviceCallListener;
@@ -43,13 +46,26 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 
 		return true;
 	}
-	
-	
+
 	@Override
 	public void onBackPressed() {
-	    //moveTaskToBack(true);
+		// moveTaskToBack(true);
+		new AlertDialog.Builder(this)
+		.setIcon(android.R.drawable.ic_dialog_alert)
+		.setTitle(R.string.cancel)
+		.setMessage(R.string.really_cancel)
+		.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+				// Stop the activity
+				Cart.getInstance().empty();
+				AbstractCarteActivity.this.finish();
+			}
+
+		}).setNegativeButton(R.string.no, null).show();
 	}
-	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

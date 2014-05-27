@@ -18,6 +18,10 @@
     <string name="btn_valider_commande">Commander</string>
     <string name="btn_ajouter_panier">Ajouter</string>
     <string name="btn_close">&#60;</string>
+    <string name="cancel">Annulation</string>
+    <string name="really_cancel">Voulez-vous vraiment annuler votre commande ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
     
     <string name="welcome_title">GAGNEZ DU TEMPS</string>
     <string name="welcome_description">Commandez sur la tablette grâce à notre menu interactif, votre plat sera prêt au bar dans 5 minutes.</string>
