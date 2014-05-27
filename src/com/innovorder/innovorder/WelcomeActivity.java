@@ -2,6 +2,7 @@ package com.innovorder.innovorder;
 
 import java.util.Date;
 
+import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.model.Cart;
 
 import android.app.Activity;
@@ -48,7 +49,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	@Override
 	public void onBackPressed() {
 	    //moveTaskToBack(true);
-		Toast.makeText(this, "T'en vas pas. Si tu l'aimes, t'en vas pas. Si tu l'aimes dis lui. Qu'elle est l'app de ta vie vie vie.", Toast.LENGTH_LONG).show();
+		CustomToast.makeText(this, R.string.not_allowed_to_quit, Toast.LENGTH_LONG, R.drawable.icon_warning).show();
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.adapter.NavDrawerListAdapter;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.storage.BitmapStorage;
@@ -47,7 +48,6 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	@Override
 	public void onBackPressed() {
 	    //moveTaskToBack(true);
-		//Toast.makeText(this, "T'en vas pas. Si tu l'aimes, t'en vas pas. Si tu l'aimes dis lui. Qu'elle est l'app de ta vie vie vie.", Toast.LENGTH_LONG).show();
 	}
 	
 
@@ -127,7 +127,7 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	@Override
 	public void onWebserviceCallFinished(String response, String tag) {
 		if (tag.equals("order")) {
-			Toast.makeText(this, R.string.msg_order_success, Toast.LENGTH_SHORT).show();
+			CustomToast.makeText(this, R.string.msg_order_success, Toast.LENGTH_LONG, R.drawable.icon_check).show();
 
 			Intent intent = new Intent(this, WelcomeActivity.class);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
+import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.parser.CarteItemParser;
 import com.innovorder.innovorder.storage.CarteItemStorage;
@@ -67,7 +68,7 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 			}
 			
 			if (items == null) {
-				Toast.makeText(this, "Une erreur s'est produite", Toast.LENGTH_LONG).show();
+				CustomToast.makeText(this, R.string.error_unknown, Toast.LENGTH_LONG).show();
 				return;
 			} else {
 				carteItemStorage.clearAll();

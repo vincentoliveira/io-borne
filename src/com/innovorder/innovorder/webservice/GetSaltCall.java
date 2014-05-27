@@ -17,7 +17,7 @@ public class GetSaltCall extends WebserviceCall {
 	protected void onPreExecute() {
 		if (context != null) {
 			dialog = new ProgressDialog(context);
-			dialog.setMessage("Login...");
+			dialog.setMessage(context.getString(R.string.login_in_progress));
 			dialog.show();
 
 			wsSaltUrl = context.getString(R.string.ws_base) + context.getString(R.string.ws_get_salt);

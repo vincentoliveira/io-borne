@@ -19,18 +19,21 @@
     <string name="btn_ajouter_panier">Ajouter</string>
     <string name="btn_close">&#60;</string>
     
-    <string name="welcome_title">GAGNER DU TEMPS</string>
-    <string name="welcome_description">Commander sur la tablette grâce à notre menu interactif, votre plat sera prêt au bar dans 5 minutes.</string>
-    <string name="welcome_button">Commander</string>
+    <string name="welcome_title">GAGNEZ DU TEMPS</string>
+    <string name="welcome_description">Commandez sur la tablette grâce à notre menu interactif, votre plat sera prêt au bar dans 5 minutes.</string>
+    <string name="welcome_button">Commandez</string>
     <string name="welcome_enter_your_name">Veuillez renseigner un prénom pour la commande</string>
     <string name="welcome_hint">Entrez votre prénom</string>
     
     <!-- Messages -->
+    <string name="login_in_progress">Login&#8230;</string>
     <string name="no_network_connection_toast">La connexion a échoué.</string>
+    <string name="error_unknown">Oups&#8230; Milles excuses, une erreur s\'est produite.</string>
     <string name="bad_user_toast">La combinaison Restaurant/Mot de passe est incorrecte.</string>
     <string name="msg_get_menu">Récupération de la carte &#8230;</string>
     <string name="msg_order_in_progress">Notre serveur transmet la commande au chef.</string>
-    <string name="msg_order_success">Votre commande a été enregistrée. Merci et bon appetit.</string>
+    <string name="msg_order_success">Votre commande a été enregistrée. Vous pourrez la récupérer rapidement au comptoir. Merci et bon appetit.</string>
+    <string name="not_allowed_to_quit">T\'en vas pas. Si tu l\'aimes, t\'en vas pas. Si tu l\'aimes dis lui. Qu\'elle est l\'app de ta vie vie vie.</string>
 
     <!-- Content Description -->
     <string name="empty_string"></string>

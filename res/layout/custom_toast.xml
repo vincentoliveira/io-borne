@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
-        android:src="@drawable/icon_check" />
+        android:src="@drawable/icon_check"
+        android:contentDescription="@string/empty_string" />
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:text="Lorem ipsum dolor sit amet" />
+        android:textSize="20sp" />
 
 </LinearLayout>

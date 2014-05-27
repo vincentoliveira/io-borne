@@ -3,6 +3,7 @@ package com.innovorder.innovorder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.storage.LoginManager;
 import com.innovorder.innovorder.webservice.CheckLoginCall;
 import com.innovorder.innovorder.webservice.GetSaltCall;
@@ -71,7 +72,7 @@ public class LoginActivity extends Activity implements OnClickListener, Webservi
 			}
 			
 			if (salt == null) {
-				Toast.makeText(this, R.string.bad_user_toast, Toast.LENGTH_SHORT).show();
+				CustomToast.makeText(this, R.string.bad_user_toast, Toast.LENGTH_SHORT).show();
 				return;
 			}
 			
@@ -84,9 +85,9 @@ public class LoginActivity extends Activity implements OnClickListener, Webservi
 			checkLoginCall.setParentActivity(this);
 			checkLoginCall.execute(restaurant, password);
 		} else if (tag == "login") {
-			boolean login = response.endsWith("{\"login\":true}");
+			boolean login = response != null && response.endsWith("{\"login\":true}");
 			if (login == false) {
-				Toast.makeText(this, R.string.bad_user_toast, Toast.LENGTH_SHORT).show();
+				CustomToast.makeText(this, R.string.bad_user_toast, Toast.LENGTH_SHORT).show();
 				loginManager.clear();
 				return;
 			}
