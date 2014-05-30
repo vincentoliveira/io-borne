@@ -12,7 +12,7 @@
     <!-- Menu -->
     <string name="menu_carte"></string>
     <string name="menu_retour_accueil">Accueil</string>
-    <string name="menu_commande">MA COMMANDE</string>
+    <string name="menu_commande">PANIER</string>
     <string name="mon_panier">Mon panier</string>
     <string name="btn_annuler">Annuler</string>
     <string name="btn_valider_commande">Commander</string>
@@ -39,6 +39,9 @@
     <string name="msg_order_success">Votre commande a été enregistrée. Vous pourrez la récupérer rapidement au comptoir. Merci et bon appetit.</string>
     <string name="not_allowed_to_quit">T\'en vas pas. Si tu l\'aimes, t\'en vas pas. Si tu l\'aimes dis lui. Qu\'elle est l\'app de ta vie vie vie.</string>
 
+    <string name="tuto_menu_button">Cliquez ici pour voir la carte</string>
+    <string name="tuto_order_button">Cliquez ici pour voir votre commande et l\'envoyer en cuisine.</string>
+    
     <!-- Content Description -->
     <string name="empty_string"></string>
 

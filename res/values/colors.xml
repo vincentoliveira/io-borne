@@ -12,6 +12,5 @@
     <color name="numa_yellow">#ffec00</color>
     
     <color name="welcome_transparent">#b0ffffff</color>
-    
-    <color name="gridview_overlay">#80000000</color>
+    <color name="overlay">#80000000</color>
 </resources>

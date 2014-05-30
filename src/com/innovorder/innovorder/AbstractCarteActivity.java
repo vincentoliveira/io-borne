@@ -5,7 +5,6 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -33,9 +32,6 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu, menu);
-
-		Drawable d = getResources().getDrawable(R.drawable.header_logo);
-		getActionBar().setBackgroundDrawable(d);
 
 		BitmapStorage bitmapStorage = BitmapStorage.getInstance();
 		if (!bitmapStorage.isInit()) {
@@ -92,6 +88,10 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 		// if nav drawer is opened, hide the action items
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_commande).setVisible(!drawerOpen);
+		
+		String text = "(" + Cart.getInstance().getItems().size() + ")";
+		menu.getItem(0).setTitle(text);
+		
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -150,5 +150,9 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 			startActivity(intent);
 			finish();
 		}
+	}
+	
+	public void reloadMenu() {
+		invalidateOptionsMenu();
 	}
 }

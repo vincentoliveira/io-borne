@@ -60,6 +60,9 @@ public class BitmapStorage {
 	}
 	
 	public void loadBitmap(String imageKey, ImageView imageView) {
+		if (imageKey == null) {
+			return;
+		}
 		Log.i("BitmapStorage", "Load: " + imageKey);
 	    final Bitmap bitmap = getBitmapFromMemCache(imageKey);
 	    if (bitmap != null) {

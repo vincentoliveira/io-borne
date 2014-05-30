@@ -8,7 +8,6 @@ import com.innovorder.innovorder.model.Cart;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,9 +24,8 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-
-		Drawable d = getResources().getDrawable(R.drawable.header_logo);  
-		getActionBar().setBackgroundDrawable(d);
+		
+		getActionBar().setDisplayShowHomeEnabled(false);
 
 		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Aachen_bt.ttf");
 
@@ -43,6 +41,15 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		startButton.setOnClickListener(this);
 		startButton.setTypeface(custom_font);
 		nameEditText.setTypeface(custom_font);
+	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    
+	    if (nameEditText != null) {
+	    	nameEditText.setText("");
+	    }
 	}
 	
 	
@@ -74,3 +81,5 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		startActivity(intent);
 	}
 }
+
+

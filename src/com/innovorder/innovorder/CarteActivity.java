@@ -26,10 +26,8 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 		// enabling action bar app icon and behaving it as toggle button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		getActionBar().setTitle("MENU");
 		
 		carteItemStorage = new CarteItemStorage(this);
-		
 
 		if (savedInstanceState == null) {
 			Bundle extras = getIntent().getExtras();
@@ -40,8 +38,10 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 		
 		List<CarteItem> categories = carteItemStorage.getMainCategories();
 		setLeftMenu(categories);
+		
+		//mDrawerLayout.openDrawer(mDrawerList);
 	}
-
+	
 	private void getCarteItems() {
 		// get username/password
 		LoginManager loginManager = new LoginManager(this);

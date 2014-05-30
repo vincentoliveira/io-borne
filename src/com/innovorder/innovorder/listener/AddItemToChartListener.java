@@ -1,5 +1,6 @@
 package com.innovorder.innovorder.listener;
 
+import com.innovorder.innovorder.AbstractCarteActivity;
 import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
@@ -36,6 +37,10 @@ public class AddItemToChartListener implements OnClickListener {
 		
 		if (adapter != null) {
 			adapter.notifyDataSetChanged();
+		}
+		
+		if (context instanceof AbstractCarteActivity) {
+			((AbstractCarteActivity) context).reloadMenu();
 		}
 	}
 
