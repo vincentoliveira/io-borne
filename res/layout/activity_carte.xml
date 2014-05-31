@@ -78,6 +78,36 @@
                     android:text="@string/tuto_order_button"
                     android:textSize="20sp" />
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/seeMyChartButtonLayout"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="600dp"
+                android:background="@color/welcome_transparent"
+                android:padding="10dp" >
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                	android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/empty_string"
+                    android:src="@drawable/icon_basket" />
+
+                <TextView
+                    android:id="@+id/seeMyCartTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                	android:layout_centerHorizontal="true"
+                    android:layout_below="@id/imageView4"
+                    android:text="@string/see_my_cart"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
         </RelativeLayout>
     </FrameLayout>
 

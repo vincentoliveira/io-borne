@@ -42,6 +42,9 @@ public class Cart {
 	}
 
 	public Date getStartOrderDate() {
+		if (startOrderDate == null) {
+			startOrderDate = new Date();
+		}
 		return startOrderDate;
 	}
 

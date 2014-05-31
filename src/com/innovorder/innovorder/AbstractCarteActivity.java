@@ -2,8 +2,6 @@ package com.innovorder.innovorder;
 
 import java.util.List;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -12,11 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.adapter.NavDrawerListAdapter;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
@@ -44,26 +40,6 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	}
 
 	@Override
-	public void onBackPressed() {
-		// moveTaskToBack(true);
-		new AlertDialog.Builder(this)
-		.setIcon(android.R.drawable.ic_dialog_alert)
-		.setTitle(R.string.cancel)
-		.setMessage(R.string.really_cancel)
-		.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-
-				// Stop the activity
-				Cart.getInstance().empty();
-				AbstractCarteActivity.this.finish();
-			}
-
-		}).setNegativeButton(R.string.no, null).show();
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// toggle nav drawer on selecting action bar app icon/title
 		if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
@@ -72,12 +48,16 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_commande:
-			ChartDialogFragment chartFragment = new ChartDialogFragment();
-			chartFragment.show(getSupportFragmentManager(), "chart");
+			openCartDialog();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	protected void openCartDialog() {
+		ChartDialogFragment chartFragment = new ChartDialogFragment();
+		chartFragment.show(getSupportFragmentManager(), "chart");
 	}
 
 	/* *
@@ -136,17 +116,12 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 		intent.putExtra("category_name", category.getName());
 		intent.putExtra("category_id", category.getId());
 		startActivity(intent);
-
-		finish();
 	}
 
 	@Override
 	public void onWebserviceCallFinished(String response, String tag) {
 		if (tag.equals("order")) {
-			CustomToast.makeText(this, R.string.msg_order_success, Toast.LENGTH_LONG, R.drawable.icon_check).show();
-
-			Intent intent = new Intent(this, WelcomeActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			Intent intent = new Intent(this, ThankYouActivity.class);
 			startActivity(intent);
 			finish();
 		}

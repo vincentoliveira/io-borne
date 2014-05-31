@@ -49,6 +49,11 @@
 	
 	        </intent-filter>
         </activity>
+        <activity
+            android:name="com.innovorder.innovorder.ThankYouActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

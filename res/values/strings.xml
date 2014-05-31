@@ -10,11 +10,12 @@
     <string name="login_button">Connexion</string>
 
     <!-- Menu -->
-    <string name="menu_carte"></string>
+    <string name="menu_carte">MENU</string>
     <string name="menu_retour_accueil">Accueil</string>
     <string name="menu_commande">PANIER</string>
     <string name="mon_panier">Mon panier</string>
     <string name="btn_annuler">Annuler</string>
+    <string name="see_my_cart">Voir mon panier</string>
     <string name="btn_valider_commande">Commander</string>
     <string name="btn_ajouter_panier">Ajouter</string>
     <string name="btn_close">&#60;</string>
@@ -23,11 +24,16 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     
-    <string name="welcome_title">GAGNEZ DU TEMPS</string>
-    <string name="welcome_description">Commandez sur la tablette grâce à notre menu interactif, votre plat sera prêt au bar dans 5 minutes.</string>
-    <string name="welcome_button">Commandez</string>
-    <string name="welcome_enter_your_name">Veuillez renseigner un prénom pour la commande</string>
-    <string name="welcome_hint">Entrez votre prénom</string>
+    <string name="welcome_title">GAGNE DU TEMPS</string>
+    <string name="welcome_description">Commande ton repas au NUMA Café depuis cette tablette !</string>
+    <string name="welcome_button">Commencer</string>
+    <string name="welcome_enter_your_name">Pour commencer, merci de renseigner ton prénom :</string>
+    <string name="welcome_hint">Prénom</string>
+    
+    <string name="thank_you_title">MERCI</string>
+    <string name="thank_you_description1">Ta commande a bien été transmise au NUMA Café.</string>
+    <string name="thank_you_description2">Il ne te reste qu\'à la régler en indiquant ton nom au comptoir.</string>
+    <string name="thank_you_button">Bon app\'</string>
     
     <!-- Messages -->
     <string name="login_in_progress">Login&#8230;</string>
@@ -35,12 +41,11 @@
     <string name="error_unknown">Oups&#8230; Milles excuses, une erreur s\'est produite.</string>
     <string name="bad_user_toast">La combinaison Restaurant/Mot de passe est incorrecte.</string>
     <string name="msg_get_menu">Récupération de la carte &#8230;</string>
-    <string name="msg_order_in_progress">Notre serveur transmet la commande au chef.</string>
-    <string name="msg_order_success">Votre commande a été enregistrée. Vous pourrez la récupérer rapidement au comptoir. Merci et bon appetit.</string>
-    <string name="not_allowed_to_quit">T\'en vas pas. Si tu l\'aimes, t\'en vas pas. Si tu l\'aimes dis lui. Qu\'elle est l\'app de ta vie vie vie.</string>
+    <string name="msg_order_in_progress">Notre serveur transmet ta commande au chef.</string>
+    <string name="not_allowed_to_quit">Action impossible</string>
 
-    <string name="tuto_menu_button">Cliquez ici pour voir la carte</string>
-    <string name="tuto_order_button">Cliquez ici pour voir votre commande et l\'envoyer en cuisine.</string>
+    <string name="tuto_menu_button">Clique ici pour voir la carte</string>
+    <string name="tuto_order_button">Clique ici pour voir votre commande et l\'envoyer en cuisine.</string>
     
     <!-- Content Description -->
     <string name="empty_string"></string>

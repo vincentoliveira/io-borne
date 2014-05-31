@@ -27,41 +27,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/welcome_title"
+            android:text="@string/thank_you_title"
             android:textSize="60sp" />
 
         <TextView
-            android:id="@+id/descriptionTextView"
+            android:id="@+id/description1TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/welcome_description"
+            android:text="@string/thank_you_description1"
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/enterYourNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/welcome_enter_your_name"
-            android:textSize="22sp" />
-
-        <EditText
-            android:id="@+id/nameEditText"
+            android:id="@+id/description2TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/welcome_hint"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/dark_grey"
-            android:layout_marginTop="20dp" />
+            android:gravity="center"
+            android:text="@string/thank_you_description2"
+            android:layout_marginTop="20dp"
+            android:textSize="22sp" />
 
         <Button
-            android:id="@+id/startButton"
+            android:id="@+id/finishButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/numa_pink"
-            android:text="@string/welcome_button"
+            android:text="@string/thank_you_button"
             android:textColor="@android:color/white" 
             android:layout_marginTop="20dp" />
     </LinearLayout>
