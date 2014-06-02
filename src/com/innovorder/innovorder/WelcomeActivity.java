@@ -41,6 +41,14 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		startButton.setOnClickListener(this);
 		startButton.setTypeface(custom_font);
 		nameEditText.setTypeface(custom_font);
+		
+		if (savedInstanceState == null) {
+			Bundle extras = getIntent().getExtras();
+			if (extras != null && extras.getBoolean("thanks")) {
+				Intent intent = new Intent(this, ThankYouActivity.class);
+				startActivity(intent);
+			}
+		}
 	}
 	
 	@Override

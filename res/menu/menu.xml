@@ -4,6 +4,6 @@
         android:id="@+id/action_commande"
         android:title="@string/menu_commande" 
         android:showAsAction="always|withText"
-        android:icon="@drawable/icon_basket" />
+        android:icon="@drawable/icon_cart" />
 
 </menu>

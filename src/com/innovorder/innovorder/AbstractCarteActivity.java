@@ -121,9 +121,12 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	@Override
 	public void onWebserviceCallFinished(String response, String tag) {
 		if (tag.equals("order")) {
-			Intent intent = new Intent(this, ThankYouActivity.class);
+			//TODO: check order result
+			
+			Intent intent = new Intent(this, WelcomeActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			intent.putExtra("thanks", true);
 			startActivity(intent);
-			finish();
 		}
 	}
 	

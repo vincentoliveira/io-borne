@@ -9,6 +9,7 @@ import java.util.TimeZone;
 
 import android.annotation.SuppressLint;
 import android.util.Base64;
+import android.util.Log;
 
 public class WsseToken {
 	public static final String HEADER_AUTHORIZATION = "Authorization";
@@ -29,6 +30,8 @@ public class WsseToken {
 		this.createdAt = generateTimestamp();
 		this.nonce = generateNonce();
 		this.digest = generateDigest();
+		
+		Log.d("timestamp", createdAt);
 	}
 
 	private String generateTimestamp() {

@@ -71,9 +71,9 @@ public class AddItemToChartListener implements OnClickListener {
 		String text = "";
 		int nb = countItem(item.getId());
 		if (nb == 1) {
-			text = "L'article \"" + item.getName() + "\" a été ajouté";
+			text = item.getName() + " ajouté(e)";
 		} else {
-			text = nb + " articles \"" + item.getName() + "\" ont été ajouté";
+			text = nb + " " + item.getName() + " ajouté(e)s";
 		}
 		
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

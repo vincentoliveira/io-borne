@@ -18,7 +18,7 @@
     <string name="see_my_cart">Voir mon panier</string>
     <string name="btn_valider_commande">Commander</string>
     <string name="btn_ajouter_panier">Ajouter</string>
-    <string name="btn_close">&#60;</string>
+    <string name="btn_close"> &#60; </string>
     <string name="cancel">Annulation</string>
     <string name="really_cancel">Voulez-vous vraiment annuler votre commande ?</string>
     <string name="yes">Oui</string>
@@ -43,15 +43,17 @@
     <string name="msg_get_menu">Récupération de la carte &#8230;</string>
     <string name="msg_order_in_progress">Notre serveur transmet ta commande au chef.</string>
     <string name="not_allowed_to_quit">Action impossible</string>
+    
+    <string name="error_empty_cart">Ton panier est vide.</string>
 
-    <string name="tuto_menu_button">Clique ici pour voir la carte</string>
-    <string name="tuto_order_button">Clique ici pour voir votre commande et l\'envoyer en cuisine.</string>
+    <string name="tuto_menu_button">Clique sur MENU pour voir la carte</string>
+    <string name="tuto_order_button">Clique sur le PANIER pour voir ta commande et l\'envoyer en cuisine.</string>
     
     <!-- Content Description -->
     <string name="empty_string"></string>
 
     <!-- WEBSERVICES -->
-    <string name="ws_base">http://recette.innovorder.fr</string>
+    <string name="ws_base">http://app.innovorder.fr</string>
     <string name="ws_media">/media/</string>
     <string name="ws_get_salt">/api/salt.json?username=%username%</string>
     <string name="ws_check_login">/api/check_login.json</string>

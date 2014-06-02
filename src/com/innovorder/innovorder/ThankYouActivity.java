@@ -1,11 +1,9 @@
 package com.innovorder.innovorder;
 
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -57,10 +55,6 @@ public class ThankYouActivity extends Activity implements OnClickListener {
 		if (timer != null) {
 			timer.cancel();
 		}
-		
-		Intent intent = new Intent(this, WelcomeActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		startActivity(intent);
 		
 		super.finish();
 	}

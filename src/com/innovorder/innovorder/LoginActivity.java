@@ -10,6 +10,7 @@ import com.innovorder.innovorder.webservice.GetSaltCall;
 import com.innovorder.innovorder.webservice.WebserviceCallListener;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -80,6 +81,10 @@ public class LoginActivity extends Activity implements OnClickListener, Webservi
 			loginManager.setSalt(salt);
 			String password = loginManager.hashPassword(plainPassword);
 			loginManager.setPassword(password);
+
+			Log.d("restaurant", restaurant);
+			Log.d("salt", salt);
+			Log.d("password", password);
 			
 			CheckLoginCall checkLoginCall = new CheckLoginCall();
 			checkLoginCall.setParentActivity(this);
@@ -96,6 +101,7 @@ public class LoginActivity extends Activity implements OnClickListener, Webservi
 			startActivity(intent);
 			finish();
 		}
+
 	}
 
 }
