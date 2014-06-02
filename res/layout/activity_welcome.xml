@@ -36,34 +36,38 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/welcome_description"
-            android:textSize="22sp" />
+            android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/enterYourNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/welcome_enter_your_name"
-            android:textSize="22sp" />
-
-        <EditText
-            android:id="@+id/nameEditText"
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/welcome_hint"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/dark_grey"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="50dp"
+            android:background="@color/numa_pink"
+            android:orientation="vertical"
+            android:padding="2dp" >
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="@string/welcome_hint"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:textColorHint="@color/dark_grey"
+                android:textSize="30sp" />
+        </TableRow>
 
         <Button
             android:id="@+id/startButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:background="@color/numa_pink"
             android:text="@string/welcome_button"
-            android:textColor="@android:color/white" 
-            android:layout_marginTop="20dp" />
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
     </LinearLayout>
 
 </RelativeLayout>

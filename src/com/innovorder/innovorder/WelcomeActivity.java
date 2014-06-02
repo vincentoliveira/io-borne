@@ -9,14 +9,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-public class WelcomeActivity extends Activity implements OnClickListener {
+public class WelcomeActivity extends Activity implements OnClickListener, OnEditorActionListener {
 
 	private EditText nameEditText;
 
@@ -32,15 +35,14 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		Button startButton = (Button) findViewById(R.id.startButton);
 		TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
 		TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
-		TextView enterYourNameTextView = (TextView) findViewById(R.id.enterYourNameTextView);
 		nameEditText = (EditText) findViewById(R.id.nameEditText);
 		
 		titleTextView.setTypeface(custom_font);
 		descriptionTextView.setTypeface(custom_font);
-		enterYourNameTextView.setTypeface(custom_font);
 		startButton.setOnClickListener(this);
 		startButton.setTypeface(custom_font);
 		nameEditText.setTypeface(custom_font);
+		nameEditText.setOnEditorActionListener(this);
 		
 		if (savedInstanceState == null) {
 			Bundle extras = getIntent().getExtras();
@@ -68,7 +70,19 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 	}
 
 	@Override
+	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+            start();
+        }    
+        return false;
+	}
+
+	@Override
 	public void onClick(View v) {
+		start();
+	}
+	
+	private void start() {
 		String name = nameEditText.getText().toString();
 		if (name.isEmpty()) {
 			return;
@@ -87,6 +101,7 @@ public class WelcomeActivity extends Activity implements OnClickListener {
 		Intent intent = new Intent(this, CarteActivity.class);
 		intent.putExtra("refresh", true);
 		startActivity(intent);
+		
 	}
 }
 

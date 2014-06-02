@@ -5,17 +5,20 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.innovorder.innovorder.Toast.CustomToast;
+import com.innovorder.innovorder.adapter.ItemListAdapter;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.parser.CarteItemParser;
@@ -66,7 +69,27 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 				CarteActivity.this.mDrawerLayout.openDrawer(Gravity.LEFT);
 			}
 		});
+
+		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Aachen_bt.ttf");
+		TextView promotedTextView = (TextView) findViewById(R.id.promotedTextView);
+		promotedTextView.setTypeface(custom_font);
 		
+		getPromotedProduct();
+	}
+	
+	public void getPromotedProduct() {
+		CarteItem item1 = carteItemStorage.find(32);
+		CarteItem item2 = carteItemStorage.find(31);
+		CarteItem item3 = carteItemStorage.find(39);
+		ArrayList<CarteItem> list = new ArrayList<CarteItem>();
+		list.add(item1);
+		list.add(item2);
+		list.add(item3);
+		
+		GridView gridView = (GridView) findViewById(R.id.promotedGridView);
+		
+		ItemListAdapter gridViewAdapter = new ItemListAdapter(this, list, R.layout.dish_item);
+		gridView.setAdapter(gridViewAdapter);
 	}
 	
 	@Override
@@ -94,8 +117,9 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 			public void onClick(DialogInterface dialog, int which) {
 
 				// Stop the activity
-				Cart.getInstance().empty();
-				CarteActivity.this.finish();
+				Intent intent = new Intent(CarteActivity.this, WelcomeActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(intent);
 			}
 
 		}).setNegativeButton(R.string.no, null).show();

@@ -11,7 +11,7 @@
     <color name="numa_pink">#e31b7c</color>
     <color name="numa_yellow">#ffec00</color>
     
-    <color name="welcome_transparent">#b0ffffff</color>
+    <color name="welcome_transparent">#c0ffffff</color>
     <color name="dark_grey">#808080</color>
     <color name="overlay">#80000000</color>
 </resources>
