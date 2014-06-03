@@ -21,14 +21,14 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class CartListAdapter extends BaseAdapter {
+public class ReceiptListAdapter extends BaseAdapter {
 	private Context context;
 	private Cart cart;
 	private AddItemToCartListener addListener;
 	private RemoveItemFromChartListener removeListener;
 	private List<Pair<CarteItem, Integer>> values;
 
-	public CartListAdapter(Context context, Cart cart) {
+	public ReceiptListAdapter(Context context, Cart cart) {
 		this.context = context;
 		this.cart = cart;
 
@@ -74,7 +74,7 @@ public class CartListAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return values.size() + 2;
+		return values.size();
 	}
 
 	@Override
@@ -100,38 +100,22 @@ public class CartListAdapter extends BaseAdapter {
 		Button removeButton = (Button) view.findViewById(R.id.removeButton);
 		Button addButton = (Button) view.findViewById(R.id.addButton);
 
-		if (position == getCount() - 2) { // empty line
-			nameTextView.setText("");
-			countTextView.setText("");
-			priceTextView.setText("");
-			removeButton.setVisibility(View.INVISIBLE);
-			addButton.setVisibility(View.INVISIBLE);
-		} else if (position == getCount() - 1) { // total
-			nameTextView.setText("Total");
-			nameTextView.setTypeface(Typeface.DEFAULT_BOLD);
-			priceTextView.setText(PriceFormatter.format(cart.getTotal()));
-			priceTextView.setTypeface(Typeface.DEFAULT_BOLD);
-			countTextView.setText("");
-			removeButton.setVisibility(View.INVISIBLE);
-			addButton.setVisibility(View.INVISIBLE);
-		} else {
-			Pair<CarteItem, Integer> pair = values.get(position);
-			final CarteItem item = pair.first;
-			final Integer count = pair.second;
+		Pair<CarteItem, Integer> pair = values.get(position);
+		final CarteItem item = pair.first;
+		final Integer count = pair.second;
 
-			nameTextView.setTypeface(Typeface.DEFAULT);
-			nameTextView.setText(item.getName());
-			priceTextView.setText(PriceFormatter.format(item.getPrice()));
-			countTextView.setText(count.toString());
+		nameTextView.setTypeface(Typeface.DEFAULT);
+		nameTextView.setText(item.getName());
+		priceTextView.setText(PriceFormatter.format(item.getPrice()));
+		countTextView.setText(count.toString());
 
-			removeButton.setTag(item.getId());
-			removeButton.setOnClickListener(removeListener);
-			removeButton.setVisibility(View.VISIBLE);
+		removeButton.setTag(item.getId());
+		removeButton.setOnClickListener(removeListener);
+		removeButton.setVisibility(View.VISIBLE);
 
-			addButton.setTag(item.getId());
-			addButton.setOnClickListener(addListener);
-			addButton.setVisibility(View.VISIBLE);
-		}
+		addButton.setTag(item.getId());
+		addButton.setOnClickListener(addListener);
+		addButton.setVisibility(View.VISIBLE);
 
 		return view;
 	}

@@ -3,7 +3,7 @@ package com.innovorder.innovorder.adapter;
 import java.util.List;
 
 import com.innovorder.innovorder.R;
-import com.innovorder.innovorder.listener.AddItemToChartListener;
+import com.innovorder.innovorder.listener.AddItemToCartListener;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.utils.PriceFormatter;
@@ -23,14 +23,14 @@ public class ItemListAdapter extends BaseAdapter {
 	private final List<CarteItem> values;
 	private int layout;
 	private String mediaBaseUrl;
-	private AddItemToChartListener listener;
+	private AddItemToCartListener listener;
 
 	public ItemListAdapter(Context context, List<CarteItem> dishes, int layout) {
 		this.context = context;
 		this.values = dishes;
 		this.layout = layout;
 		
-		listener = new AddItemToChartListener(context);
+		listener = new AddItemToCartListener(context);
 		listener.setAdapter(this);
 		this.mediaBaseUrl = context.getString(R.string.ws_base) + context.getString(R.string.ws_media);
 	}

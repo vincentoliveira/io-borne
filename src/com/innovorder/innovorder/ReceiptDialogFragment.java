@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.ListAdapter;
 
-public class ChartDialogFragment extends DialogFragment {
+public class ReceiptDialogFragment extends DialogFragment {
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		// Use the Builder class for convenient dialog construction

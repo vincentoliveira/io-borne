@@ -23,6 +23,7 @@
     <string name="really_cancel">Voulez-vous vraiment annuler votre commande ?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="total">Total</string>
     
     <string name="welcome_title">GAGNE DU TEMPS</string>
     <string name="welcome_description">Ne fais plus la queue au NUMA Café !</string>
@@ -36,6 +37,7 @@
     
     <string name="promoted_title">Vos produits préférés</string>
     <string name="la_carte">La carte</string>
+    <string name="receipt_title">Mon panier</string>
     
     <!-- Messages -->
     <string name="login_in_progress">Login&#8230;</string>

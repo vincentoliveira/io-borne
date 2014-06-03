@@ -3,17 +3,10 @@ package com.innovorder.innovorder;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,15 +46,6 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 		setLeftMenu(categories);
 
 		// mDrawerLayout.openDrawer(mDrawerList);
-
-		ImageView mainImageView = (ImageView) findViewById(R.id.mainImageView);
-		mainImageView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				CarteActivity.this.mDrawerLayout.openDrawer(Gravity.LEFT);
-			}
-		});
 
 		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Aachen_bt.ttf");
 		TextView promotedTextView = (TextView) findViewById(R.id.promotedTextView);
@@ -106,19 +90,7 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 
 	@Override
 	public void onBackPressed() {
-		// moveTaskToBack(true);
-		new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle(R.string.cancel).setMessage(R.string.really_cancel).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-
-				// Stop the activity
-				Intent intent = new Intent(CarteActivity.this, WelcomeActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-				startActivity(intent);
-			}
-
-		}).setNegativeButton(R.string.no, null).show();
+		cancelOrder();
 	}
 
 	private void getCarteItems() {

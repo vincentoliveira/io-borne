@@ -2,6 +2,8 @@ package com.innovorder.innovorder;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
@@ -56,7 +58,7 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	}
 	
 	protected void openCartDialog() {
-		ChartDialogFragment chartFragment = new ChartDialogFragment();
+		ReceiptDialogFragment chartFragment = new ReceiptDialogFragment();
 		chartFragment.show(getSupportFragmentManager(), "chart");
 	}
 
@@ -132,5 +134,25 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	
 	public void reloadMenu() {
 		invalidateOptionsMenu();
+	}
+
+	public void onItemAdd() {
+		Intent intent = new Intent(this, ReceiptActivity.class);
+		startActivity(intent);
+	}
+
+	protected void cancelOrder() {
+		new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle(R.string.cancel).setMessage(R.string.really_cancel).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+				// Stop the activity
+				Intent intent = new Intent(AbstractCarteActivity.this, WelcomeActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				startActivity(intent);
+			}
+
+		}).setNegativeButton(R.string.no, null).show();
 	}
 }

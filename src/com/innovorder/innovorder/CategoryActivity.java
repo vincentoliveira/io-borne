@@ -3,7 +3,7 @@ package com.innovorder.innovorder;
 import java.util.List;
 
 import com.innovorder.innovorder.adapter.ItemListAdapter;
-import com.innovorder.innovorder.listener.AddItemToChartListener;
+import com.innovorder.innovorder.listener.AddItemToCartListener;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.storage.CarteItemStorage;
@@ -80,7 +80,7 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 		title2TextView.setTypeface(custom_font);
 		title2TextView.setOnClickListener(this);
 		backTextView.setOnClickListener(this);
-		AddItemToChartListener listener = new AddItemToChartListener(this);
+		AddItemToCartListener listener = new AddItemToCartListener(this);
 		orderButton.setOnClickListener(listener);
 	}
 

@@ -24,7 +24,8 @@
         android:layout_alignBaseline="@+id/removeButton"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
-        android:layout_toRightOf="@id/removeButton" />
+        android:layout_toRightOf="@id/removeButton"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/addButton"

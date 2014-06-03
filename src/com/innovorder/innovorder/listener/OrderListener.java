@@ -10,10 +10,10 @@ import com.innovorder.innovorder.webservice.OrderCall;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
+import android.view.View;
 import android.widget.Toast;
 
-public class OrderListener implements OnClickListener {
+public class OrderListener implements android.content.DialogInterface.OnClickListener, android.view.View.OnClickListener {
 
 	private Context context;
 
@@ -23,7 +23,15 @@ public class OrderListener implements OnClickListener {
 	
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
-		
+		order();
+	}
+
+	@Override
+	public void onClick(View view) {
+		order();
+	}
+	
+	private void order() {
 		Cart cart = Cart.getInstance();
 		cart.setEndOrderDate(new Date());
 

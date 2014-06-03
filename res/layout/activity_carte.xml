@@ -70,7 +70,7 @@
                 android:layout_marginTop="5dp"
                 android:horizontalSpacing="5dp"
                 android:verticalSpacing="5dp"
-                android:numColumns="4"
+                android:numColumns="5"
                 android:padding="5dp"
                 android:rowHeight="300dp" >
             </GridView>
