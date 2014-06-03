@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    tools:context=".CarteActivity" 
+    android:padding="2dp" >
+
+    <ImageView
+        android:id="@+id/dishImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerInside"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/empty_string"
+        android:background="@android:color/white"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/dishImageView"
+        android:textSize="16sp" 
+        android:textColor="@android:color/black"
+        android:gravity="center"
+ />
+
+</RelativeLayout>

@@ -6,33 +6,34 @@ import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.listener.AddItemToChartListener;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.storage.BitmapStorage;
-import com.innovorder.innovorder.utils.PriceFormatter;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ItemListAdapter extends BaseAdapter {
+public class CategoriesListAdapter extends BaseAdapter {
 	private Context context;
 	private final List<CarteItem> values;
 	private int layout;
 	private String mediaBaseUrl;
 	private AddItemToChartListener listener;
+	private Typeface customFont;
 
-	public ItemListAdapter(Context context, List<CarteItem> dishes, int layout) {
+	public CategoriesListAdapter(Context context, List<CarteItem> categories, int layout) {
 		this.context = context;
-		this.values = dishes;
+		this.values = categories;
 		this.layout = layout;
 		
 		listener = new AddItemToChartListener(context);
 		listener.setAdapter(this);
 		this.mediaBaseUrl = context.getString(R.string.ws_base) + context.getString(R.string.ws_media);
+
+		customFont = Typeface.createFromAsset(context.getAssets(), "fonts/Aachen_bt.ttf");
 	}
 
 	@Override
@@ -41,13 +42,13 @@ public class ItemListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public CarteItem getItem(int position) {
 		return values.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		return position;
+		return getItem(position).getId();
 	}
 
 	@Override
@@ -66,48 +67,18 @@ public class ItemListAdapter extends BaseAdapter {
 		
 		
 		TextView nameTextView = (TextView) view.findViewById(R.id.nameTextView);
-		TextView priceTextView = (TextView) view.findViewById(R.id.priceTextView);
-		final TextView addCartButton = (TextView) view.findViewById(R.id.addCartButton);
 		ImageView imageView = (ImageView) view.findViewById(R.id.dishImageView);
-		final ImageView cancelButton = (ImageView) view.findViewById(R.id.cancelButton);
-		final ImageView validateButton = (ImageView) view.findViewById(R.id.validateButton);
 		
 		if (item.getMediaUrl() != null && !item.getMediaUrl().equals("null")) {
 			String url = mediaBaseUrl + item.getMediaUrl();
 			BitmapStorage bitmapStorage = BitmapStorage.getInstance();
 			bitmapStorage.loadBitmap(url, imageView);
+		} else {
+			imageView.setImageResource(R.drawable.ic_launcher);
 		}
 		
 		nameTextView.setText(item.getName());
-		priceTextView.setText(PriceFormatter.format(item.getPrice()));
-		
-		validateButton.setTag(item.getId());
-		validateButton.setOnClickListener(listener);
-
-		addCartButton.setVisibility(View.VISIBLE);
-		cancelButton.setVisibility(View.GONE);
-		validateButton.setVisibility(View.GONE);
-		
-		addCartButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				addCartButton.setVisibility(View.GONE);
-				cancelButton.setVisibility(View.VISIBLE);
-				validateButton.setVisibility(View.VISIBLE);
-			}
-		});
-		
-		cancelButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				addCartButton.setVisibility(View.VISIBLE);
-				cancelButton.setVisibility(View.GONE);
-				validateButton.setVisibility(View.GONE);
-			}
-		});
-
-		Typeface custom_font = Typeface.createFromAsset(context.getAssets(), "fonts/Aachen_bt.ttf");
-		nameTextView.setTypeface(custom_font);
+		nameTextView.setTypeface(customFont);
 		
 		return view;
 	}

@@ -146,8 +146,10 @@ public class CarteItemStorage {
 			open();
 			Cursor cursor = database.query(IOHelper.TABLE_CARTE_ITEM, allColumns, IOHelper.COLUMN_IO_ID + " = " + id, null, null, null, null);
 
-			cursor.moveToFirst();
-			CarteItem item = cursorToItem(cursor);
+			CarteItem item = null;
+			if (cursor.moveToFirst() == true) {
+				item = cursorToItem(cursor);
+			}
 
 			// make sure to close the cursor
 			cursor.close();

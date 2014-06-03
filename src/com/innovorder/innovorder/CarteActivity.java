@@ -18,8 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.innovorder.innovorder.Toast.CustomToast;
+import com.innovorder.innovorder.adapter.CategoriesListAdapter;
 import com.innovorder.innovorder.adapter.ItemListAdapter;
-import com.innovorder.innovorder.model.Cart;
+import com.innovorder.innovorder.listener.CategoryListListener;
 import com.innovorder.innovorder.model.CarteItem;
 import com.innovorder.innovorder.parser.CarteItemParser;
 import com.innovorder.innovorder.storage.CarteItemStorage;
@@ -27,7 +28,7 @@ import com.innovorder.innovorder.storage.LoginManager;
 import com.innovorder.innovorder.webservice.GetCarteItemsCall;
 import com.innovorder.innovorder.webservice.WebserviceCallListener;
 
-public class CarteActivity extends AbstractCarteActivity implements WebserviceCallListener, OnItemClickListener {	
+public class CarteActivity extends AbstractCarteActivity implements WebserviceCallListener, OnItemClickListener {
 	private CarteItemStorage carteItemStorage;
 
 	@Override
@@ -38,7 +39,7 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 		// enabling action bar app icon and behaving it as toggle button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		
+
 		carteItemStorage = new CarteItemStorage(this);
 
 		if (savedInstanceState == null) {
@@ -47,23 +48,15 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 				getCarteItems();
 			}
 		}
-		
+
 		List<CarteItem> categories = carteItemStorage.getMainCategories();
 		setLeftMenu(categories);
-		
-		//mDrawerLayout.openDrawer(mDrawerList);
-		
-		View seeMyChartButtonLayout = findViewById(R.id.seeMyChartButtonLayout);
-		seeMyChartButtonLayout.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				CarteActivity.this.openCartDialog();
-			}
-		});
-		
+
+		// mDrawerLayout.openDrawer(mDrawerList);
+
 		ImageView mainImageView = (ImageView) findViewById(R.id.mainImageView);
 		mainImageView.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				CarteActivity.this.mDrawerLayout.openDrawer(Gravity.LEFT);
@@ -72,46 +65,49 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 
 		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Aachen_bt.ttf");
 		TextView promotedTextView = (TextView) findViewById(R.id.promotedTextView);
+		TextView laCarteTextView = (TextView) findViewById(R.id.laCarteTextView);
 		promotedTextView.setTypeface(custom_font);
-		
-		getPromotedProduct();
+		laCarteTextView.setTypeface(custom_font);
+
+		setPromotedProduct();
+		setCategories();
 	}
-	
-	public void getPromotedProduct() {
+
+	public void setPromotedProduct() {
 		CarteItem item1 = carteItemStorage.find(32);
 		CarteItem item2 = carteItemStorage.find(31);
 		CarteItem item3 = carteItemStorage.find(39);
 		ArrayList<CarteItem> list = new ArrayList<CarteItem>();
-		list.add(item1);
-		list.add(item2);
-		list.add(item3);
-		
+		if (item1 != null) {
+			list.add(item1);
+		}
+		if (item2 != null) {
+			list.add(item2);
+		}
+		if (item3 != null) {
+			list.add(item3);
+		}
+
 		GridView gridView = (GridView) findViewById(R.id.promotedGridView);
-		
+
 		ItemListAdapter gridViewAdapter = new ItemListAdapter(this, list, R.layout.dish_item);
 		gridView.setAdapter(gridViewAdapter);
 	}
 	
-	@Override
-	protected void onResume() {
-		TextView seeMyCartTextView = (TextView) findViewById(R.id.seeMyCartTextView);
-		String text = getString(R.string.see_my_cart) + " (" + Cart.getInstance().getItems().size() + ")";
-		seeMyCartTextView.setText(text);
+	public void setCategories() {
+		GridView categoriesGridView = (GridView) findViewById(R.id.categoriesGridView);
 
-		Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/Aachen_bt.ttf");
-		seeMyCartTextView.setTypeface(custom_font);
-		
-		super.onResume();
+		List<CarteItem> categories = carteItemStorage.getItemsByParentId(0);
+		CategoriesListAdapter gridViewAdapter = new CategoriesListAdapter(this, categories, R.layout.category_item);
+		categoriesGridView.setAdapter(gridViewAdapter);
+		OnItemClickListener categoryListListener = new CategoryListListener(this, gridViewAdapter);
+		categoriesGridView.setOnItemClickListener(categoryListListener);
 	}
 
 	@Override
 	public void onBackPressed() {
 		// moveTaskToBack(true);
-		new AlertDialog.Builder(this)
-		.setIcon(android.R.drawable.ic_dialog_alert)
-		.setTitle(R.string.cancel)
-		.setMessage(R.string.really_cancel)
-		.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+		new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle(R.string.cancel).setMessage(R.string.really_cancel).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -124,7 +120,7 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 
 		}).setNegativeButton(R.string.no, null).show();
 	}
-	
+
 	private void getCarteItems() {
 		// get username/password
 		LoginManager loginManager = new LoginManager(this);
@@ -139,7 +135,6 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 		getCarteItems.setParentActivity(this);
 		getCarteItems.execute(restaurant, password);
 	}
-	
 
 	@Override
 	public void onWebserviceCallFinished(String response, String tag) {
@@ -149,7 +144,7 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 			if (response != null) {
 				items = CarteItemParser.parse(response);
 			}
-			
+
 			if (items == null) {
 				CustomToast.makeText(this, R.string.error_unknown, Toast.LENGTH_LONG).show();
 				return;
@@ -159,9 +154,10 @@ public class CarteActivity extends AbstractCarteActivity implements WebserviceCa
 					carteItemStorage.addItem(item);
 				}
 			}
-			
+
 			List<CarteItem> categories = carteItemStorage.getItemsByParentId(0);
 			setLeftMenu(categories);
+			setCategories();
 		} else {
 			super.onWebserviceCallFinished(response, tag);
 		}

@@ -61,8 +61,11 @@ public class NavDrawerListAdapter extends BaseAdapter {
 		} else {
 			CarteItem item = this.getItem(position);
 	        txtTitle.setText(item.getName());
-			BitmapStorage bitmapStorage = BitmapStorage.getInstance();
-			bitmapStorage.loadBitmap(mediaBaseUrl + item.getMediaUrl(), imgIcon);
+
+			if (item.getMediaUrl() != null && !item.getMediaUrl().equals("null")) {
+				BitmapStorage bitmapStorage = BitmapStorage.getInstance();
+				bitmapStorage.loadBitmap(mediaBaseUrl + item.getMediaUrl(), imgIcon);
+			}
 		}
         
         return convertView;

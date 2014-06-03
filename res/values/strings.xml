@@ -35,6 +35,7 @@
     <string name="thank_you_button">Bon app\'</string>
     
     <string name="promoted_title">Vos produits préférés</string>
+    <string name="la_carte">La carte</string>
     
     <!-- Messages -->
     <string name="login_in_progress">Login&#8230;</string>

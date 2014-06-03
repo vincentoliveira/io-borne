@@ -27,6 +27,9 @@ public class LoginActivity extends Activity implements OnClickListener, Webservi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
+		Button button = (Button) findViewById(R.id.login_button);
+		button.setOnClickListener(this);
+		
 		loginManager = new LoginManager(this);
 		if (loginManager.isAthentificated()) {
 			String restaurant = loginManager.getRestaurant();
@@ -36,9 +39,6 @@ public class LoginActivity extends Activity implements OnClickListener, Webservi
 			checkLoginCall.setParentActivity(this);
 			checkLoginCall.execute(restaurant, password);
 		}
-		
-		Button button = (Button) findViewById(R.id.login_button);
-		button.setOnClickListener(this);
 	}
 
 	@Override
