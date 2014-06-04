@@ -9,6 +9,7 @@ import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.storage.CarteItemStorage;
 import com.innovorder.innovorder.utils.PriceFormatter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -120,7 +121,7 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 			Intent intent = new Intent(this, CarteActivity.class);
 		    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
-			finish();
+			overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 		} else {
 			detailsView.setVisibility(View.GONE);
 			child = null;

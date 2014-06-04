@@ -3,8 +3,10 @@ package com.innovorder.innovorder.listener;
 
 import com.innovorder.innovorder.CarteActivity;
 import com.innovorder.innovorder.CategoryActivity;
+import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.model.CarteItem;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -41,6 +43,7 @@ public class CategoryListListener implements OnItemClickListener {
 		intent.putExtra("category_name", category.getName());
 		intent.putExtra("category_id", category.getId());
 		context.startActivity(intent);
+		((Activity) context).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 		
 	}
 

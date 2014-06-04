@@ -75,6 +75,11 @@ public class ReceiptActivity extends AbstractCarteActivity implements Webservice
 		receiptTextView.setText(title.toString());
 
 	}
+	
+	@Override
+	protected void openReceipt() {
+		return;
+	}
 
 	public void setCategories() {
 		GridView categoriesGridView = (GridView) findViewById(R.id.categoriesGridView);

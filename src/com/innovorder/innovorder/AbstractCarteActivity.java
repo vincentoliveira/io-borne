@@ -50,16 +50,18 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_commande:
-			openCartDialog();
+			openReceipt();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 	
-	protected void openCartDialog() {
-		ReceiptDialogFragment chartFragment = new ReceiptDialogFragment();
-		chartFragment.show(getSupportFragmentManager(), "chart");
+	protected void openReceipt() {
+		Intent intent = new Intent(this, ReceiptActivity.class);
+	    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+		overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 	}
 
 	/* *
@@ -109,7 +111,6 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 			Intent intent = new Intent(this, CarteActivity.class);
 		    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
-			finish();
 
 			return;
 		}
@@ -138,8 +139,7 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	}
 
 	public void onItemAdd() {
-		Intent intent = new Intent(this, ReceiptActivity.class);
-		startActivity(intent);
+		openReceipt();
 	}
 
 	protected void cancelOrder() {
