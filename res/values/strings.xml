@@ -25,14 +25,14 @@
     <string name="no">Non</string>
     <string name="total">Total</string>
     
-    <string name="welcome_title">GAGNE DU TEMPS</string>
+    <string name="welcome_title">COMMANDE ICI</string>
     <string name="welcome_description">Ne fais plus la queue au NUMA Café !</string>
     <string name="welcome_button">Commencer</string>
     <string name="welcome_hint">Renseigne ton prénom</string>
     
     <string name="thank_you_title">MERCI</string>
     <string name="thank_you_description1">Ta commande a bien été transmise au NUMA Café.</string>
-    <string name="thank_you_description2">Il ne te reste qu\'à la régler en indiquant ton nom au comptoir.</string>
+    <string name="thank_you_description2">Tu peux la chercher au comptoir à </string>
     <string name="thank_you_button">Bon app\'</string>
     
     <string name="promoted_title">Vos produits préférés</string>

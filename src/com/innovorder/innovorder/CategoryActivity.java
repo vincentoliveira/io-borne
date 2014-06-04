@@ -9,7 +9,6 @@ import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.storage.CarteItemStorage;
 import com.innovorder.innovorder.utils.PriceFormatter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;

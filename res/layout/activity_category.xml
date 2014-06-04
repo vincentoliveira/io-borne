@@ -67,7 +67,7 @@
             <TextView
                 android:id="@+id/closeTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="10dp"
@@ -81,7 +81,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/closeTextView"
-                android:layout_marginBottom="5dp"
                 android:layout_toLeftOf="@+id/dishImageView"
                 android:layout_toRightOf="@+id/closeTextView"
                 android:textColor="@android:color/black"
@@ -92,9 +91,12 @@
                 android:id="@+id/dishPriceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:layout_below="@+id/dishTitleTextView"
                 android:layout_toRightOf="@+id/closeTextView"
-                android:textColor="@android:color/black" />
+                android:layout_toLeftOf="@+id/dishImageView"
+                android:textColor="@android:color/black"
+            	android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/dishDescriptionTextView"
@@ -102,8 +104,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dishPriceTextView"
                 android:layout_toRightOf="@+id/closeTextView"
+                android:layout_toLeftOf="@+id/dishImageView"
                 android:textColor="@android:color/black"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+            	android:textSize="20sp" />
 
             <Button
                 android:id="@+id/commanderButton"

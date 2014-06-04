@@ -1,8 +1,11 @@
 package com.innovorder.innovorder;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,6 +18,7 @@ public class ThankYouActivity extends Activity implements OnClickListener {
 
 	private Timer timer;
 
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,12 +32,19 @@ public class ThankYouActivity extends Activity implements OnClickListener {
 		TextView titleTextView = (TextView) findViewById(R.id.titleTextView);
 		TextView description1TextView = (TextView) findViewById(R.id.description1TextView);
 		TextView description2TextView = (TextView) findViewById(R.id.description2TextView);
+		TextView timeTextView = (TextView) findViewById(R.id.timeTextView);
 		
 		titleTextView.setTypeface(custom_font);
 		description1TextView.setTypeface(custom_font);
 		description2TextView.setTypeface(custom_font);
 		startButton.setOnClickListener(this);
 		startButton.setTypeface(custom_font);
+		timeTextView.setTypeface(custom_font);
+		
+		Date date = new Date();
+		date.setTime(date.getTime() + 5 * 60 * 1000);
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("H'h'mm");
+		timeTextView.setText(dateFormatter.format(date));
 		
 		timer = new Timer();
 		timer.schedule(new TimerTask() {

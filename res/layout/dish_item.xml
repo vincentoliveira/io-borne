@@ -49,28 +49,4 @@
         android:textSize="20sp"
    	 	android:gravity="center" />
 
-    <ImageView
-        android:id="@+id/cancelButton"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_below="@+id/dishImageView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:padding="5dp"
-        android:contentDescription="@string/empty_string"
-        android:background="@color/numa_yellow"
-        android:src="@drawable/icon_cancel" />
-
-    <ImageView
-        android:id="@+id/validateButton"
-        android:layout_width="80dp"
-        android:layout_height="48dp"
-        android:layout_below="@+id/dishImageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:padding="5dp"
-        android:contentDescription="@string/empty_string"
-        android:background="@color/numa_pink"
-        android:src="@drawable/icon_check" />
-
 </RelativeLayout>
