@@ -3,78 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <!-- Framelayout to display Fragments -->
-
-    <FrameLayout
-        android:id="@+id/frame_container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/mainImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:contentDescription="@string/empty_string"
+            android:scaleType="fitXY"
+            android:src="@drawable/welcome" />
 
-            <ImageView
-                android:id="@+id/mainImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/empty_string"
-                android:scaleType="fitXY"
-                android:src="@drawable/welcome" />
+        <TextView
+            android:id="@+id/laCarteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/numa_yellow"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/la_carte"
+            android:textColor="@android:color/black"
+            android:textSize="28sp" />
 
-            <TextView
-                android:id="@+id/laCarteTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:background="@color/numa_yellow"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/la_carte"
-                android:textColor="@android:color/black"
-                android:textSize="28sp" />
+        <GridView
+            android:id="@+id/categoriesGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/laCarteTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:horizontalSpacing="5dp"
+            android:numColumns="5"
+            android:padding="5dp"
+            android:verticalSpacing="5dp" >
+        </GridView>
 
-            <GridView
-                android:id="@+id/categoriesGridView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/laCarteTextView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:horizontalSpacing="5dp"
-                android:verticalSpacing="5dp"
-                android:numColumns="5"
-                android:padding="5dp">
-            </GridView>
+        <TextView
+            android:id="@+id/promotedTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/categoriesGridView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@color/numa_yellow"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/promoted_title"
+            android:textColor="@android:color/black"
+            android:textSize="28sp" />
 
-            <TextView
-                android:id="@+id/promotedTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/categoriesGridView"
-                android:layout_centerHorizontal="true"
-                android:background="@color/numa_yellow"
-                android:gravity="center"
-                android:padding="5dp"
-                android:layout_marginTop="50dp"
-                android:text="@string/promoted_title"
-                android:textColor="@android:color/black"
-                android:textSize="28sp" />
-
-            <GridView
-                android:id="@+id/promotedGridView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/promotedTextView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:horizontalSpacing="10dp"
-                android:numColumns="3"
-                android:rowHeight="300dp" >
-            </GridView>
-        </RelativeLayout>
-    </FrameLayout>
+        <GridView
+            android:id="@+id/promotedGridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/promotedTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="3"
+            android:rowHeight="300dp" >
+        </GridView>
+    </RelativeLayout>
 
     <!-- Listview to display slider menu -->
 

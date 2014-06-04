@@ -9,6 +9,7 @@ import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.storage.CarteItemStorage;
 import com.innovorder.innovorder.utils.PriceFormatter;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CategoryActivity extends AbstractCarteActivity implements OnItemClickListener, OnClickListener {
@@ -74,12 +76,15 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 		gridView.setOnItemClickListener(this);
 
 		orderButton = (Button) findViewById(R.id.commanderButton);
-		
+
+		TextView backTextView = (TextView) findViewById(R.id.backTextView);
+		backTextView.setOnClickListener(this);
+
 		TextView title2TextView = (TextView) detailsView.findViewById(R.id.dishTitleTextView);
-		TextView backTextView = (TextView) detailsView.findViewById(R.id.backTextView);
+		TextView closeTextView = (TextView) detailsView.findViewById(R.id.closeTextView);
 		title2TextView.setTypeface(custom_font);
 		title2TextView.setOnClickListener(this);
-		backTextView.setOnClickListener(this);
+		closeTextView.setOnClickListener(this);
 		AddItemToCartListener listener = new AddItemToCartListener(this);
 		orderButton.setOnClickListener(listener);
 	}
@@ -112,7 +117,14 @@ public class CategoryActivity extends AbstractCarteActivity implements OnItemCli
 
 	@Override
 	public void onClick(View view) {
-		detailsView.setVisibility(View.GONE);
-		child = null;
+		if (view.getId() == R.id.backTextView) {
+			Intent intent = new Intent(this, CarteActivity.class);
+		    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			finish();
+		} else {
+			detailsView.setVisibility(View.GONE);
+			child = null;
+		}
 	}
 }

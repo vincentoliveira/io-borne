@@ -107,6 +107,7 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 		CarteItem category = (CarteItem) adapter.getItem(position);
 		if (category == null) {
 			Intent intent = new Intent(this, CarteActivity.class);
+		    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 			finish();
 
