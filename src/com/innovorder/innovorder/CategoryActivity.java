@@ -20,7 +20,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CategoryActivity extends AbstractCarteActivity implements OnItemClickListener, OnClickListener {

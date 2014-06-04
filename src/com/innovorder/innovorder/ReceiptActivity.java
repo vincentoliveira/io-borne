@@ -90,5 +90,9 @@ public class ReceiptActivity extends AbstractCarteActivity implements Webservice
 	public void onItemAdd() {
 		ListView receiptListView = (ListView) findViewById(R.id.receiptListView);
 		receiptListView.invalidate();
+
+		Cart cart = Cart.getInstance();
+		TextView totalPriceTextView = (TextView) findViewById(R.id.totalPriceTextView);
+		totalPriceTextView.setText(PriceFormatter.format(cart.getTotal()));
 	}
 }

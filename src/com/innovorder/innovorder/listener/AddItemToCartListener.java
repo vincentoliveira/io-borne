@@ -33,7 +33,7 @@ public class AddItemToCartListener implements OnClickListener {
 		}
 		
 		if (context instanceof AbstractCarteActivity) {
-			((AbstractCarteActivity) context).reloadMenu();
+			((AbstractCarteActivity) context).reloadView();
 			((AbstractCarteActivity) context).onItemAdd();
 		}
 	}

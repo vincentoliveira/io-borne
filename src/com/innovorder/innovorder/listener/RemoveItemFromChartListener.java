@@ -34,7 +34,8 @@ public class RemoveItemFromChartListener implements OnClickListener {
 		}
 		
 		if (context instanceof AbstractCarteActivity) {
-			((AbstractCarteActivity) context).reloadMenu();
+			((AbstractCarteActivity) context).reloadView();
+			((AbstractCarteActivity) context).onItemAdd();
 		}
 	}
 	

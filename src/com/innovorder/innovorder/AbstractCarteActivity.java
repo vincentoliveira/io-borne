@@ -133,7 +133,7 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 		}
 	}
 	
-	public void reloadMenu() {
+	public void reloadView() {
 		invalidateOptionsMenu();
 	}
 
