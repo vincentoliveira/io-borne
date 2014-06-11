@@ -1,7 +1,5 @@
 package com.innovorder.innovorder;
 
-import java.util.Date;
-
 import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.model.Cart;
 
@@ -94,8 +92,7 @@ public class WelcomeActivity extends Activity implements OnClickListener, OnEdit
 		}
 		
 		Cart cart = Cart.getInstance();
-		cart.empty();
-		cart.setStartOrderDate(new Date());
+		cart.reinit();
 		cart.setOrderName(name);
 		
 		Intent intent = new Intent(this, CarteActivity.class);

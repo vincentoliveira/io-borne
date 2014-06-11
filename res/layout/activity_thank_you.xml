@@ -55,14 +55,40 @@
             android:text="@string/empty_string"
             android:textSize="42sp" />
 
+        <TextView
+            android:id="@+id/choosePaymentTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/thank_you_choose_payment"
+            android:layout_marginTop="20dp"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/amountTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/empty_string"
+            android:textSize="42sp" />
+
+        <ImageButton
+            android:id="@+id/lydiaButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/Lydia"
+            android:src="@drawable/lydia"
+            android:background="@color/numa_blue"
+            android:layout_marginTop="20dp" />
+
         <Button
             android:id="@+id/finishButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/numa_pink"
             android:text="@string/thank_you_button"
-            android:textColor="@android:color/white" 
-            android:layout_marginTop="20dp" />
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"  />
     </LinearLayout>
 
 </RelativeLayout>

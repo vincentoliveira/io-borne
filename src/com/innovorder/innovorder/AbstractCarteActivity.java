@@ -12,12 +12,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.adapter.NavDrawerListAdapter;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.CarteItem;
+import com.innovorder.innovorder.parser.OrderParser;
 import com.innovorder.innovorder.storage.BitmapStorage;
 import com.innovorder.innovorder.webservice.WebserviceCallListener;
 
@@ -125,12 +128,14 @@ public abstract class AbstractCarteActivity extends FragmentActivity implements 
 	@Override
 	public void onWebserviceCallFinished(String response, String tag) {
 		if (tag.equals("order")) {
-			//TODO: check order result
-			
-			Intent intent = new Intent(this, WelcomeActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-			intent.putExtra("thanks", true);
-			startActivity(intent);
+			if (response != null && OrderParser.parse(response)) {
+				Intent intent = new Intent(this, WelcomeActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				intent.putExtra("thanks", true);
+				startActivity(intent);
+			} else {
+				CustomToast.makeText(this, R.string.error_unknown, Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 	

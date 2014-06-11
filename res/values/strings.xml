@@ -24,6 +24,8 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="total">Total</string>
+    <string name="Lydia">Lydia</string>
+    <string name="finish">Terminer</string>
     
     <string name="welcome_title">COMMANDE ICI</string>
     <string name="welcome_description">Ne fais plus la queue au NUMA Café !</string>
@@ -31,9 +33,10 @@
     <string name="welcome_hint">Renseigne ton prénom</string>
     
     <string name="thank_you_title">MERCI</string>
-    <string name="thank_you_description1">Ta commande a bien été transmise au NUMA Café.</string>
+    <string name="thank_you_description1">Ta commande (%s) a bien été transmise au NUMA Café.</string>
     <string name="thank_you_description2">Tu peux la chercher au comptoir à </string>
-    <string name="thank_you_button">Bon app\'</string>
+    <string name="thank_you_choose_payment">Choisi ton moyen de paiement</string>
+    <string name="thank_you_button">Je paie au comptoir</string>
     
     <string name="promoted_title">Vos produits préférés</string>
     <string name="la_carte">La carte</string>
@@ -46,7 +49,10 @@
     <string name="bad_user_toast">La combinaison Restaurant/Mot de passe est incorrecte.</string>
     <string name="msg_get_menu">Récupération de la carte &#8230;</string>
     <string name="msg_order_in_progress">Notre serveur transmet ta commande au chef.</string>
+    <string name="msg_payment_in_progress">Paiment en cours &#8230;</string>
     <string name="not_allowed_to_quit">Action impossible</string>
+    <string name="payment_success">Paiement accepté</string>
+    <string name="payment_error">Paiement refusé</string>
     
     <string name="error_empty_cart">Ton panier est vide.</string>
 
@@ -55,13 +61,25 @@
     
     <!-- Content Description -->
     <string name="empty_string"></string>
+    
+    <!-- CONST -->
+    <string name="payment_type_lydia">LYDIA</string>
+    <string name="payment_status_error">ERROR</string>
+    <string name="payment_status_success">SUCCESS</string>
 
     <!-- WEBSERVICES -->
-    <string name="ws_base">http://app.innovorder.fr</string>
+    <string name="ws_base">http://recette.innovorder.fr</string>
     <string name="ws_media">/media/</string>
     <string name="ws_get_salt">/api/salt.json?username=%username%</string>
     <string name="ws_check_login">/api/check_login.json</string>
     <string name="ws_get_carte_items">/api/carte.json</string>
     <string name="ws_order">/api/order.json</string>
+    <string name="ws_payment">/api/order/%d/payment.json</string>
+    
+    <string name="ws_lydia_payment">http://dev.lydia-app.com/api/payment/payment.json</string>
+    <string name="lydia_provider_token">53907ba8c1419714082893</string>
+    <string name="lydia_vendor_token">53907c0f0ccb8671446924</string>
+    <string name="lydia_phone">0646464655</string>
+    <string name="lydia_auth_token">cdc36fd0f96fbc108ae59646e4aedb28</string>
 
 </resources>

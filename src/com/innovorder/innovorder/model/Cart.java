@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Cart {
-	private long id;
+	private long serverId = 0;
+	private double serverPrice;
 	private String orderName;
 	private Date startOrderDate;
 	private Date endOrderDate;
 	private ArrayList<CarteItem> items = new ArrayList<CarteItem>();
 	private static Cart instance = null;
-	
+	private Payment payment;
 	
 	private Cart()
 	{
@@ -24,13 +25,15 @@ public class Cart {
 		
 		return instance;
 	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+	
+	public void reinit() {
+		this.serverId = 0;
+		this.serverPrice = 0.0;
+		this.setStartOrderDate(new Date());
+		this.endOrderDate = null;
+		this.setOrderName("");
+		this.empty();
+		this.payment = null;
 	}
 
 	public String getOrderName() {
@@ -94,6 +97,30 @@ public class Cart {
 		orderName = "";
 		startOrderDate = null;
 		endOrderDate = null;
+	}
+
+	public double getServerPrice() {
+		return serverPrice;
+	}
+
+	public void setServerPrice(double serverPrice) {
+		this.serverPrice = serverPrice;
+	}
+
+	public long getServerId() {
+		return serverId;
+	}
+
+	public void setServerId(long serverId) {
+		this.serverId = serverId;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 }

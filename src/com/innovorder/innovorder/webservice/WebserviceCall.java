@@ -3,8 +3,13 @@ package com.innovorder.innovorder.webservice;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -12,6 +17,7 @@ import android.util.Log;
 public abstract class WebserviceCall extends AsyncTask<String, String, String> {
 	protected String method = "GET";
 	protected String postData = "";
+	protected String contentType = "application/json";
 	
 	
 	protected String getContent(String strurl, WsseToken wsseToken) 
@@ -23,7 +29,11 @@ public abstract class WebserviceCall extends AsyncTask<String, String, String> {
 			URL url = new URL(strurl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod(method);
-			conn.setRequestProperty("Content-Type", "application/json");
+			
+			if (!contentType.isEmpty()) {
+				conn.setRequestProperty("Content-Type", contentType);
+			}
+			
 			conn.setConnectTimeout(5000);
 			conn.setReadTimeout(5000);
 			
@@ -49,17 +59,46 @@ public abstract class WebserviceCall extends AsyncTask<String, String, String> {
 			content = sb.toString();
 			Log.i("ws", content);
 		} catch (Exception ex) {
-			//Log.e("WebserviceError", ex.getMessage());
+			Log.e("WebserviceError", ex.getMessage());
+			ex.printStackTrace();
 		} finally {
 			try {
 				if (reader != null) {
 					reader.close();
 				}
 			} catch (Exception ex) {
-				//Log.e("WebserviceError", ex.getMessage());
 			}
 		}
 		
 		return content;
+	}
+
+	/**
+	 * Get query string from param list	
+	 * 
+	 * @param params
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	protected String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException
+	{
+	    StringBuilder result = new StringBuilder();
+	    boolean first = true;
+
+	    for (NameValuePair pair : params)
+	    {
+	        if (first) {
+	            first = false;
+	        }
+	        else {
+	            result.append("&");
+	        }
+	        
+	        result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
+	        result.append("=");
+	        result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
+	    }
+
+	    return result.toString();
 	}
 }

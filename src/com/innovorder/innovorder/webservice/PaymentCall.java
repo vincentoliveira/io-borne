@@ -1,16 +1,17 @@
 package com.innovorder.innovorder.webservice;
 
+
 import java.text.SimpleDateFormat;
 
 import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.model.Cart;
-import com.innovorder.innovorder.model.CarteItem;
+import com.innovorder.innovorder.model.Payment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 
-public class OrderCall extends WebserviceCall {
+public class PaymentCall extends WebserviceCall {
 	private ProgressDialog dialog;
 	private Context context;
 
@@ -24,10 +25,8 @@ public class OrderCall extends WebserviceCall {
 	protected void onPreExecute() {
 		if (context != null) {
 			dialog = new ProgressDialog(context);
-			dialog.setMessage(context.getString(R.string.msg_order_in_progress));
+			dialog.setMessage(context.getString(R.string.msg_payment_in_progress));
 			dialog.show();
-
-			wsUrl = context.getString(R.string.ws_base) + context.getString(R.string.ws_order);
 		}
 	}
 
@@ -37,37 +36,34 @@ public class OrderCall extends WebserviceCall {
 	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected String doInBackground(String... params) {
-		if (wsUrl == null ||  params.length < 2) {
+		Cart cart = Cart.getInstance();
+		Payment payment = cart.getPayment();
+		if (cart.getServerId() == 0 || payment == null || params.length < 2) {
 			return null;
 		}
+		
+		wsUrl = context.getString(R.string.ws_base) + context.getString(R.string.ws_payment, cart.getServerId());
 
 		String restaurant = params[0];
 		String password = params[1];
 		WsseToken wsseToken = new WsseToken(restaurant, password);
-
-		Cart cart = Cart.getInstance();
-
-		StringBuilder itemsBuilder = new StringBuilder();
-		for (CarteItem item : cart.getItems()) {
-			if (itemsBuilder.length() != 0) {
-				itemsBuilder.append(",");
-			}
-			
-			itemsBuilder.append("{\"id\":")
-			.append(item.getId())
-			.append("}");
-		}
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		StringBuilder dataBuilder = new StringBuilder();
-		dataBuilder.append("{\"name\":\"")
-		.append(cart.getOrderName().replace("\"", ""))
-		.append("\",\"start_date\":\"")
-		.append(formatter.format(cart.getStartOrderDate()))
-		.append("\",\"items\":[")
-		.append(itemsBuilder)
-		.append("]}");
+		dataBuilder.append("{\"date\":\"")
+		.append(formatter.format(payment.getDate()))
+		.append("\",\"amount\":")
+		.append(payment.getAmount())
+		.append(",\"transaction_id\":\"")
+		.append(payment.getTransactionId())
+		.append("\",\"type\":\"")
+		.append(payment.getType())
+		.append("\",\"status\":\"")
+		.append(payment.getStatus())
+		.append("\",\"comments\":\"")
+		.append(payment.getComments())
+		.append("\"}");
 		
 		this.method = "POST";
 		this.postData = dataBuilder.toString();
@@ -82,7 +78,7 @@ public class OrderCall extends WebserviceCall {
 		}
 		
 		if (context instanceof WebserviceCallListener) {
-			((WebserviceCallListener) context).onWebserviceCallFinished(response, "order");
+			((WebserviceCallListener) context).onWebserviceCallFinished(response, "payment");
 		}
 	}
 }
