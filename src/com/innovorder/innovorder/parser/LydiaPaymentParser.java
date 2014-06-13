@@ -12,7 +12,7 @@ public class LydiaPaymentParser {
 
 	private String transactionId;
 	private String message;
-	private int error;
+	private int error = -1;
 
 	public boolean parse(String jsonStr) {
 
@@ -24,7 +24,7 @@ public class LydiaPaymentParser {
 			if (json.has(TAG_TRANSACTION_ID)) {
 				transactionId = json.getString(TAG_TRANSACTION_ID);
 			}
-			if (json.has(TAG_TRANSACTION_ID)) {
+			if (json.has(TAG_MESSAGE)) {
 				message = json.getString(TAG_MESSAGE);
 			}
 			
@@ -32,6 +32,8 @@ public class LydiaPaymentParser {
 		} catch (JSONException e) {
 			Log.e("JSON Parser", "Error parsing Lydia payment response " + e.toString());
 
+			message = "BAD RESULT:" + jsonStr;
+			error = -1;
 			return false;
 		}
 	}

@@ -7,6 +7,7 @@ import java.util.TimerTask;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.model.Cart;
 import com.innovorder.innovorder.model.Payment;
 import com.innovorder.innovorder.parser.LydiaPaymentParser;
@@ -27,10 +28,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ThankYouActivity extends Activity implements OnClickListener, WebserviceCallListener {
 
 	private Timer timer;
+	private final int timout = 30 * 1000;
 
 	@SuppressLint("SimpleDateFormat")
 	@Override
@@ -79,34 +82,59 @@ public class ThankYouActivity extends Activity implements OnClickListener, Webse
 				ThankYouActivity.this.timer = null;
 				ThankYouActivity.this.finish();
 			}
-		}, 10 * 2000);
+		}, timout);
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-		if (scanningResult != null) {
-			String scanContent = scanningResult.getContents();
-			
-			Log.d("scanContent", scanContent);
+		if (scanningResult != null && scanningResult.getContents() != null) {
 
 			Cart cart = Cart.getInstance();
+			if (cart.getPayment() != null && cart.getPayment().isAlreadyCalled()) {
+				return;
+			}
+			
+			String scanContent = scanningResult.getContents();
+			Log.d("scanContent", scanContent);
+			
 			Payment payment = new Payment();
 			payment.setAmount(cart.getServerPrice());
+			payment.isAlreadyCalled();
 			cart.setPayment(payment);
 			
 			LydiaPaymentCall lydiaCall = new LydiaPaymentCall();
 			lydiaCall.setParentActivity(this);
 			lydiaCall.execute(scanContent);
+		} else {
+			setPaymentResut(false);
 		}
 	}
 
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.lydiaButton) {
+			Cart cart = Cart.getInstance();
+			CustomToast.makeText(this, PriceFormatter.format(cart.getServerPrice()), Toast.LENGTH_LONG).show();
+//
+//			Cart cart = Cart.getInstance();
+//			Payment payment = new Payment();
+//			payment.setType(getString(R.string.payment_type_lydia));
+//			payment.setAmount(0);
+//			payment.setStatus(getString(R.string.payment_status_error));
+//			payment.addComment("TRACKER");
+//			cart.setPayment(payment);
+//			
+//			LoginManager loginManager = new LoginManager(this);
+//			String restaurant = loginManager.getRestaurant();
+//			String password = loginManager.getPassword();
+//			PaymentCall call = new PaymentCall();
+//			call.setParentActivity(this);
+//			call.execute(restaurant, password);
+			
 			if (timer != null) {
 				timer.cancel();
 			}
-			
+
 			IntentIntegrator scanIntegrator = new IntentIntegrator(this);
 			scanIntegrator.initiateScan();
 		} else if (v.getId() == R.id.finishButton) {
@@ -174,6 +202,6 @@ public class ThankYouActivity extends Activity implements OnClickListener, Webse
 				ThankYouActivity.this.timer = null;
 				ThankYouActivity.this.finish();
 			}
-		}, 10 * 2000);
+		}, timout);
 	}
 }

@@ -8,7 +8,6 @@ public class Cart {
 	private double serverPrice;
 	private String orderName;
 	private Date startOrderDate;
-	private Date endOrderDate;
 	private ArrayList<CarteItem> items = new ArrayList<CarteItem>();
 	private static Cart instance = null;
 	private Payment payment;
@@ -29,10 +28,9 @@ public class Cart {
 	public void reinit() {
 		this.serverId = 0;
 		this.serverPrice = 0.0;
-		this.setStartOrderDate(new Date());
-		this.endOrderDate = null;
+		this.startOrderDate = new Date();
 		this.setOrderName("");
-		this.empty();
+		this.items.clear();
 		this.payment = null;
 	}
 
@@ -55,14 +53,6 @@ public class Cart {
 		this.startOrderDate = startOrderDate;
 	}
 
-	public Date getEndOrderDate() {
-		return endOrderDate;
-	}
-
-	public void setEndOrderDate(Date endOrderDate) {
-		this.endOrderDate = endOrderDate;
-	}
-
 	public ArrayList<CarteItem> getItems() {
 		return items;
 	}
@@ -77,7 +67,7 @@ public class Cart {
 	}
 
 	public void addItem(CarteItem item) {
-		this.items.add(item);
+		this.items.add(0, item);
 	}
 
 	public int nbItem() {
@@ -90,13 +80,6 @@ public class Cart {
 			total += item.getPrice();
 		}
 		return total;
-	}
-
-	public void empty() {
-		items.clear();
-		orderName = "";
-		startOrderDate = null;
-		endOrderDate = null;
 	}
 
 	public double getServerPrice() {

@@ -10,6 +10,7 @@ public class Payment {
 	private String status = "";
 	private String comments = "";
 	private String transactionId = "";
+	private boolean alreadyCalled = false;
 	
 	public Date getDate() {
 		return date;
@@ -48,6 +49,12 @@ public class Payment {
 		this.transactionId = transactionId;
 	}
 	public void addComment(String comment ) {
-		comments = comments + ";" + comment;
+		comments = comments + comment + ";";
+	}
+	public boolean isAlreadyCalled() {
+		return alreadyCalled;
+	}
+	public void setAlreadyCalled() {
+		this.alreadyCalled = true;
 	}
 }

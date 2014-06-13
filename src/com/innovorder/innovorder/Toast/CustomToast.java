@@ -29,7 +29,7 @@ public class CustomToast {
 		textView.setTypeface(custom_font);
 		
 		Toast toast = new Toast(context);
-		toast.setDuration(Toast.LENGTH_LONG);
+		toast.setDuration(duration);
 		toast.setView(layout);
 		
 		return toast;

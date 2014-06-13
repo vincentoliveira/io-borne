@@ -1,7 +1,5 @@
 package com.innovorder.innovorder.listener;
 
-import java.util.Date;
-
 import com.innovorder.innovorder.R;
 import com.innovorder.innovorder.Toast.CustomToast;
 import com.innovorder.innovorder.model.Cart;
@@ -33,7 +31,6 @@ public class OrderListener implements android.content.DialogInterface.OnClickLis
 	
 	private void order() {
 		Cart cart = Cart.getInstance();
-		cart.setEndOrderDate(new Date());
 
 		LoginManager loginManager = new LoginManager(context);
 		String restaurant = loginManager.getRestaurant();

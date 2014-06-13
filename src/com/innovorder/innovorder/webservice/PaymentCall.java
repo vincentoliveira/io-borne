@@ -10,6 +10,7 @@ import com.innovorder.innovorder.model.Payment;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Base64;
 
 public class PaymentCall extends WebserviceCall {
 	private ProgressDialog dialog;
@@ -62,7 +63,7 @@ public class PaymentCall extends WebserviceCall {
 		.append("\",\"status\":\"")
 		.append(payment.getStatus())
 		.append("\",\"comments\":\"")
-		.append(payment.getComments())
+		.append(new String(Base64.encode(payment.getComments().getBytes(), Base64.DEFAULT)).replace("\n", ""))
 		.append("\"}");
 		
 		this.method = "POST";

@@ -35,7 +35,7 @@
     <string name="thank_you_title">MERCI</string>
     <string name="thank_you_description1">Ta commande (%s) a bien été transmise au NUMA Café.</string>
     <string name="thank_you_description2">Tu peux la chercher au comptoir à </string>
-    <string name="thank_you_choose_payment">Choisi ton moyen de paiement</string>
+    <string name="thank_you_choose_payment">Choisis ton moyen de paiement</string>
     <string name="thank_you_button">Je paie au comptoir</string>
     
     <string name="promoted_title">Vos produits préférés</string>
@@ -68,7 +68,7 @@
     <string name="payment_status_success">SUCCESS</string>
 
     <!-- WEBSERVICES -->
-    <string name="ws_base">http://recette.innovorder.fr</string>
+    <string name="ws_base">http://app.innovorder.fr</string>
     <string name="ws_media">/media/</string>
     <string name="ws_get_salt">/api/salt.json?username=%username%</string>
     <string name="ws_check_login">/api/check_login.json</string>
@@ -76,10 +76,10 @@
     <string name="ws_order">/api/order.json</string>
     <string name="ws_payment">/api/order/%d/payment.json</string>
     
-    <string name="ws_lydia_payment">http://dev.lydia-app.com/api/payment/payment.json</string>
-    <string name="lydia_provider_token">53907ba8c1419714082893</string>
-    <string name="lydia_vendor_token">53907c0f0ccb8671446924</string>
-    <string name="lydia_phone">0646464655</string>
-    <string name="lydia_auth_token">cdc36fd0f96fbc108ae59646e4aedb28</string>
+    <string name="ws_lydia_payment">https://lydia-app.com/api/payment/payment.json</string>
+    <string name="lydia_provider_token">539ac756ddf8c657145138</string>
+    <string name="lydia_vendor_token">52b05d9866df2285069935</string>
+    <string name="lydia_phone">0662293125</string>
+    <string name="lydia_auth_token">2d34aa73dee2dcdbf9acdedc05fd0dc7</string>
 
 </resources>
